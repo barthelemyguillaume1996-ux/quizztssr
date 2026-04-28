@@ -50,7 +50,7 @@ body.cat-ps{--acc:#c084fc;--a2:rgba(192,132,252,.12);--a3:rgba(192,132,252,.06);
 body.vt-light.cat-ps,body.vt-paper.cat-ps{--acc:#7e22ce;--a2:rgba(126,34,206,.1);--a3:rgba(126,34,206,.05);}
 /* ===================== BASE ===================== */
 *{box-sizing:border-box;margin:0;padding:0;}
-body{font-family:'DM Mono',monospace;min-height:100vh;background:var(--bg);color:var(--text);transition:background .25s,color .25s;}
+body{font-family:'DM Mono',monospace;min-height:100vh;font-size:15px;background:var(--bg);color:var(--text);transition:background .25s,color .25s;}
 body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(var(--border2) 1px,transparent 1px);background-size:28px 28px;opacity:.18;pointer-events:none;z-index:0;}
 #app{position:relative;z-index:1;max-width:720px;margin:0 auto;padding:0 18px 60px;display:flex;flex-direction:column;}
 .screen{display:none;flex-direction:column;}.screen.active{display:flex;}
@@ -255,6 +255,49 @@ body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(
 .word-chip.err{border-color:#dc2626;background:rgba(220,38,38,.1);color:#dc2626;}
 .word-chip.missed{border-color:#00d87a;background:rgba(0,216,122,.05);color:#00d87a;opacity:.7;}
 .word-chip:disabled{cursor:default;}
+/* ===================== TYPE — Saisie libre ===================== */
+.type-wrap{margin-bottom:11px;}
+.type-input{width:100%;background:var(--bg2);border:2px solid var(--border2);border-radius:6px;padding:14px 16px;font-family:'DM Mono',monospace;font-size:15px;color:var(--text);outline:none;transition:border-color .2s,background .2s;letter-spacing:.5px;}
+.type-input:focus{border-color:var(--acc);box-shadow:0 0 0 3px var(--a2);}
+.type-input.ok-input{border-color:#00d87a;background:rgba(0,216,122,.08);color:#00a85a;}
+.type-input.err-input{border-color:#dc2626;background:rgba(220,38,38,.08);color:#dc2626;}
+.type-input:disabled{cursor:default;}
+.type-submit-btn{background:var(--acc);color:var(--bg);border:none;font-family:monospace;font-size:8px;padding:11px 20px;border-radius:4px;cursor:pointer;letter-spacing:1px;margin-top:8px;width:100%;transition:all .12s;}
+.type-submit-btn:hover:not(:disabled){filter:brightness(1.1);}
+.type-submit-btn:disabled{opacity:.4;cursor:default;}
+.type-hint{font-size:9px;color:var(--dim);margin-top:6px;font-family:monospace;letter-spacing:1px;}
+.type-correct-reveal{margin-top:8px;font-family:monospace;font-size:11px;color:#00a85a;}
+
+/* ===================== SLIDER — Curseur numérique ===================== */
+.slider-wrap{margin-bottom:11px;}
+.slider-display{text-align:center;font-family:monospace;font-size:42px;color:var(--acc);margin:14px 0 6px;text-shadow:0 0 18px var(--acc);transition:color .25s,text-shadow .25s;line-height:1;}
+.slider-display.ok-val{color:#00d87a;text-shadow:0 0 18px #00d87a;}
+.slider-display.err-val{color:#dc2626;text-shadow:0 0 18px #dc2626;}
+.slider-display .slider-unit{font-size:16px;color:var(--text2);margin-left:4px;}
+.slider-track{padding:0 4px;}
+.slider-input{width:100%;height:6px;-webkit-appearance:none;appearance:none;background:var(--border);border-radius:3px;outline:none;cursor:pointer;margin:10px 0 4px;}
+.slider-input::-webkit-slider-thumb{-webkit-appearance:none;width:26px;height:26px;border-radius:50%;background:var(--acc);cursor:pointer;box-shadow:0 0 10px var(--acc);transition:box-shadow .15s;}
+.slider-input::-webkit-slider-thumb:hover{box-shadow:0 0 18px var(--acc);}
+.slider-input:disabled{cursor:default;opacity:.6;}
+.slider-bounds{display:flex;justify-content:space-between;font-family:monospace;font-size:9px;color:var(--dim);margin-top:2px;}
+.slider-submit-btn{background:var(--acc);color:var(--bg);border:none;font-family:monospace;font-size:8px;padding:11px 20px;border-radius:4px;cursor:pointer;letter-spacing:1px;margin-top:10px;width:100%;transition:all .12s;}
+.slider-submit-btn:hover:not(:disabled){filter:brightness(1.1);}
+
+/* ===================== SCRAMBLE — Anagramme ===================== */
+.scramble-wrap{margin-bottom:11px;}
+.scramble-hint{font-size:10px;color:var(--text2);margin-bottom:10px;font-style:italic;padding:8px 12px;background:var(--a3);border-radius:5px;border-left:3px solid var(--acc);}
+.scramble-zone-label{font-family:monospace;font-size:7px;color:var(--dim);letter-spacing:2px;text-transform:uppercase;margin-bottom:5px;}
+.scramble-answer-zone{min-height:52px;border:2px dashed var(--border2);border-radius:6px;padding:8px 10px;display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;align-items:center;transition:border-color .2s,background .2s;background:var(--bg2);}
+.scramble-answer-zone.ok-zone{border-color:#00d87a;background:rgba(0,216,122,.07);border-style:solid;}
+.scramble-answer-zone.err-zone{border-color:#dc2626;background:rgba(220,38,38,.07);border-style:solid;}
+.scramble-answer-zone-empty{font-family:monospace;font-size:9px;color:var(--dim);font-style:italic;}
+.scramble-pool{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;}
+.scr-tile{background:var(--panel);border:2px solid var(--border2);border-radius:5px;padding:9px 14px;font-family:'DM Mono',monospace;font-size:14px;font-weight:600;color:var(--acc);cursor:pointer;transition:all .12s;user-select:none;letter-spacing:1px;}
+.scr-tile:hover:not(.scr-placed){border-color:var(--acc);background:var(--a2);transform:translateY(-2px);box-shadow:0 3px 8px var(--sh);}
+.scr-tile.scr-placed{opacity:.2;pointer-events:none;transform:none;}
+.scr-tile.scr-ans{background:var(--a2);border-color:var(--acc);cursor:pointer;}
+.scr-tile.scr-ans:hover{background:var(--a3);border-color:var(--border2);transform:translateY(-2px);}
+
 /* Exam mode: no feedback visible */
 .exam-mode .fbk{display:none!important;}
 .exam-mode .qcard::before{background:var(--dim);}
@@ -1119,8 +1162,8 @@ body.rpg-mode::before { opacity:0 !important; }
 
 /* Zone de contenu — très large sur desktop */
 .rpg-content {
-  max-width:900px;width:100%;margin:0 auto;
-  padding:20px 24px;flex:1;display:flex;flex-direction:column;gap:14px;
+  max-width:960px;width:100%;margin:0 auto;
+  padding:22px 28px;flex:1;display:flex;flex-direction:column;gap:16px;
 }
 
 /* Narrative */
@@ -1142,13 +1185,13 @@ body.rpg-mode::before { opacity:0 !important; }
 /* .rpg-ticket-main::before, .rpg-ticket-main::after { display:none; } */
 .rpg-ticket-stripe {
   background:linear-gradient(135deg,#b45309,#d97706);
-  padding:10px 24px;
+  padding:12px 24px;
   display:flex;align-items:center;justify-content:space-between;
   border-bottom:1px solid rgba(0,0,0,.15);
 }
 .rpg-ticket-stripe-num {
-  font-family:'Courier New',monospace;font-size:13px;
-  font-weight:bold;color:#fff;letter-spacing:2px;
+  font-family:'Courier New',monospace;font-size:15px;
+  font-weight:bold;color:#fff;letter-spacing:3px;
   text-shadow:0 1px 2px rgba(0,0,0,.3);
 }
 .rpg-ticket-stripe-prio {
@@ -1168,8 +1211,8 @@ body.rpg-mode::before { opacity:0 !important; }
 }
 @keyframes blink-dot{from{opacity:1;}to{opacity:.3;}}
 .rpg-ticket-desc {
-  font-family:'Courier New',monospace;font-size:14px;
-  color:#1c1200;line-height:1.8;font-weight:600;
+  font-family:'Courier New',monospace;font-size:15px;
+  color:#1c1200;line-height:1.9;font-weight:600;
 }
 .rpg-ticket-meta {
   display:flex;gap:16px;margin-top:12px;padding-top:10px;
@@ -1177,7 +1220,7 @@ body.rpg-mode::before { opacity:0 !important; }
   font-family:'Courier New',monospace;flex-wrap:wrap;
 }
 .rpg-ticket-meta span { display:flex;align-items:center;gap:4px; }
-.rpg-ticket-body { padding:16px 24px 14px; }
+.rpg-ticket-body { padding:18px 24px 16px; }
 /* Code barre décoratif */
 .rpg-ticket-barcode {
   height:12px;padding:0 24px 8px;
@@ -1205,9 +1248,9 @@ body.rpg-mode::before { opacity:0 !important; }
 
 .rpg-action-btn {
   background:#e8dfc0;border:1.5px solid #8a7a5a;
-  padding:13px 16px;cursor:pointer;text-align:left;
-  font-family:'Courier New',monospace;font-size:12px;color:#1a1208;
-  line-height:1.5;transition:all .12s;
+  padding:14px 16px;cursor:pointer;text-align:left;
+  font-family:'Courier New',monospace;font-size:13px;color:#1a1208;
+  line-height:1.6;transition:all .12s;
   display:flex;align-items:flex-start;gap:10px;
 }
 .rpg-action-btn:hover:not(:disabled) {
@@ -1315,19 +1358,34 @@ body.rpg-mode::before { opacity:0 !important; }
   padding:40px 20px;min-height:100vh;background:var(--bg);
 }
 #screen-rpg-end.active { display:flex; }
+#screen-rpg-end {
+  background:#d4c9a8 !important; /* forcer le fond paper même sans classe rpg-mode */
+}
 .rpg-end-container {
-  max-width:540px;width:100%;
-  background:#1a1208;border:2px solid #8a7a5a;padding:30px;
-  text-align:center;font-family:'Courier New',monospace;
+  max-width:560px;width:100%;
+  background:#fef9e7;
+  border:1px solid #c8b870;
+  padding:36px 32px;
+  text-align:center;
+  font-family:'Courier New',monospace;
+  box-shadow:3px 4px 14px rgba(0,0,0,.2);
+  position:relative;
 }
-.rpg-end-title { font-size:18px;font-weight:bold;margin-bottom:8px;letter-spacing:4px; }
-.rpg-end-sub { font-size:12px;color:#c8bc9a;margin-bottom:24px;line-height:1.7; }
+/* Punaise décorative */
+.rpg-end-container::before {
+  content:'';position:absolute;top:-14px;left:50%;transform:translateX(-50%);
+  width:20px;height:20px;background:#8b1a1a;border-radius:50%;
+  border:2px solid #5a0a0a;box-shadow:0 2px 6px rgba(0,0,0,.4);
+}
+.rpg-end-divider { border:none;border-top:1px dashed #c0a860;margin:16px 0; }
+.rpg-end-title { font-size:20px;font-weight:bold;margin-bottom:6px;letter-spacing:4px;color:#2a1a08; }
+.rpg-end-sub { font-size:12px;color:#5a4a28;margin-bottom:20px;line-height:1.8; }
 .rpg-end-grid {
-  display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:24px;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:24px;
 }
-.rpg-end-stat { border:1px solid #6a5a3a;padding:12px 8px; }
-.rpg-end-val { font-size:20px;font-weight:bold;display:block;margin-bottom:4px; }
-.rpg-end-lbl { font-size:9px;color:#7a6a4a;letter-spacing:2px; }
+.rpg-end-stat { border:1px solid #c8b870;padding:14px 8px;background:#fef3c7; }
+.rpg-end-val { font-size:22px;font-weight:bold;display:block;margin-bottom:4px; }
+.rpg-end-lbl { font-size:9px;color:#7a6a4a;letter-spacing:2px;text-transform:uppercase; }
 
 
 /* RPG Intro */
@@ -1430,7 +1488,7 @@ body.rpg-mode::before { opacity:0 !important; }
 <div id="app">
 <!-- MENU -->
 <div id="screen-menu" class="screen active">
-  <div class="logo"><h1 id="logo">📚 TSSR QUIZ</h1><div class="sub">Basé sur ton Notion · 255 questions · 7 mécaniques</div></div>
+  <div class="logo"><h1 id="logo">📚 TSSR QUIZ</h1><div class="sub">Basé sur ton Notion · 297 questions · 10 mécaniques</div></div>
   
   <div class="ui-switcher" id="ui-switcher">
     <button class="ui-sw-btn" data-ui="ui-arcade" onclick="switchUI('ui-arcade')">🕹 ARCADE</button>
@@ -1822,7 +1880,7 @@ body.rpg-mode::before { opacity:0 !important; }
             Tu viens d'être recruté en tant que technicien systèmes et réseaux.<br><br>
             Des tickets d'incidents vont t'être assignés. Ton supérieur t'observe.<br><br>
             <strong>Chaque action compte.</strong> Une bonne décision renforce sa confiance. Une erreur la fait chuter.<br><br>
-            Si tu le décevois trop... il te montrera la sortie.<br>
+            Si tu le déçois trop... il te montrera la sortie.<br>
             Si tu brilles... une promotion t'attend.
           </div>
 
@@ -1852,7 +1910,7 @@ body.rpg-mode::before { opacity:0 !important; }
             </div>
             <div style="text-align:right;">
               <button onclick="rpgStartFromIntro()" style="background:#8b1a1a;color:#fef3c7;border:2px solid #1a1208;font-family:'Courier New',monospace;font-size:10px;padding:10px 18px;cursor:pointer;box-shadow:3px 3px 0 #1a1208;letter-spacing:2px;font-weight:bold;transition:all .1s;">
-                PRENDRE MON PREMIER TICKET ▶
+                PRENDRE MON PREMIER TICKET →
               </button>
             </div>
           </div>
@@ -2006,18 +2064,33 @@ body.rpg-mode::before { opacity:0 !important; }
 </div>
 
 <!-- RPG FIN -->
-<div id="screen-rpg-end" class="screen">
+<div id="screen-rpg-end" class="screen" style="display:none;align-items:center;justify-content:center;min-height:100vh;padding:30px;background:#d4c9a8;">
   <div class="rpg-end-container">
-    <div class="rpg-end-title" id="rpg-end-title" style="color:#fbbf24">RÉSULTATS</div>
+    <div style="font-size:11px;letter-spacing:3px;color:#8b1a1a;margin-bottom:12px;">RAPPORT DE FIN DE SESSION</div>
+    <div class="rpg-end-title" id="rpg-end-title">RÉSULTATS</div>
     <div class="rpg-end-sub" id="rpg-end-sub">Fin de session</div>
+    <hr class="rpg-end-divider">
     <div class="rpg-end-grid">
-      <div class="rpg-end-stat"><span class="rpg-end-val" id="rpg-end-conf" style="color:#fbbf24">50%</span><div class="rpg-end-lbl">CONFIANCE</div></div>
-      <div class="rpg-end-stat"><span class="rpg-end-val" id="rpg-end-ok" style="color:#00a85a">0</span><div class="rpg-end-lbl">RÉSOLUS</div></div>
-      <div class="rpg-end-stat"><span class="rpg-end-val" id="rpg-end-fail" style="color:#dc2626">0</span><div class="rpg-end-lbl">RATÉS</div></div>
+      <div class="rpg-end-stat">
+        <span class="rpg-end-val" id="rpg-end-conf">50%</span>
+        <div class="rpg-end-lbl">Confiance finale</div>
+      </div>
+      <div class="rpg-end-stat">
+        <span class="rpg-end-val" id="rpg-end-ok" style="color:#4a7a20">0</span>
+        <div class="rpg-end-lbl">Tickets résolus</div>
+      </div>
+      <div class="rpg-end-stat">
+        <span class="rpg-end-val" id="rpg-end-fail" style="color:#8b2010">0</span>
+        <div class="rpg-end-lbl">Tickets ratés</div>
+      </div>
     </div>
+    <hr class="rpg-end-divider">
     <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
-      <button onclick="startRPGNarrative()" style="background:#8b1a1a;color:#fef3c7;border:2px solid #1a1208;font-family:'Courier New',monospace;font-size:11px;padding:10px 20px;cursor:pointer;box-shadow:3px 3px 0 #1a1208;letter-spacing:2px;">↩ REJOUER</button>
-      <button onclick="goMenu()" style="background:#2a2010;color:#c8bc9a;border:2px solid #6a5a3a;font-family:'Courier New',monospace;font-size:11px;padding:10px 20px;cursor:pointer;letter-spacing:2px;">QUITTER</button>
+      <button onclick="startRPGNarrative()" style="background:#8b1a1a;color:#fef3c7;border:2px solid #5a0a0a;font-family:'Courier New',monospace;font-size:11px;padding:11px 22px;cursor:pointer;box-shadow:3px 3px 0 #3a0808;letter-spacing:2px;transition:all .1s;">↩ REJOUER</button>
+      <button onclick="goMenu()" style="background:#f5ede0;color:#4a3a20;border:2px solid #8a7a5a;font-family:'Courier New',monospace;font-size:11px;padding:11px 22px;cursor:pointer;box-shadow:2px 2px 0 #8a7a5a;letter-spacing:2px;transition:all .1s;">QUITTER</button>
+    </div>
+    <div style="margin-top:14px;font-size:9px;color:#9a8a6a;letter-spacing:1px;">
+      Signé : M. Durand, DSI · Service Informatique
     </div>
   </div>
 </div>
@@ -2109,7 +2182,14 @@ reseau:{label:"Présentation Réseau",icon:"🌐",desc:"OSI, TCP/IP, équipement
 {t:'match',q:"Associe chaque cmdlet PowerShell à son usage.",pairs:[{l:"Get-Service",r:"Liste les services Windows"},{l:"Get-Process",r:"Liste les processus actifs"},{l:"Get-EventLog",r:"Lit les journaux d'événements"},{l:"Get-ChildItem",r:"Liste fichiers et dossiers"}],d:1,x:"Convention Verbe-Nom : Get-Service (services), Get-Process (processus, alias gps), Get-EventLog (journaux), Get-ChildItem (arborescence, alias gci/ls/dir)."},
 {t:'match',q:"Associe chaque protocole d'authentification Wi-Fi à son niveau de sécurité.",pairs:[{l:"WEP",r:"Obsolète — cassable"},{l:"WPA-TKIP",r:"Déprécié — faible"},{l:"WPA2-AES",r:"Standard actuel"},{l:"WPA3-SAE",r:"Plus récent — renforcé"}],d:2,x:"Évolution de la sécurité Wi-Fi : WEP (1997, cassé en minutes) → WPA-TKIP (2003, déprécié) → WPA2-AES (2004, standard actuel) → WPA3-SAE (2018, authentification simultanée)."},
 {t:'match',q:"Associe chaque terme Active Directory à sa définition.",pairs:[{l:"GPO",r:"Stratégie de groupe"},{l:"OU",r:"Unité d'organisation"},{l:"DC",r:"Contrôleur de domaine"},{l:"LDAP",r:"Protocole d'annuaire"}],d:1,x:"AD repose sur 4 concepts : GPO (règles appliquées automatiquement), OU (organisation hiérarchique), DC (serveur qui héberge AD), LDAP (protocole pour interroger l'annuaire, port 389)."},
-{t:'match',q:"Associe chaque mode VLAN de port switch à sa description.",pairs:[{l:"Access",r:"Un seul VLAN, pas de tag"},{l:"Trunk",r:"Plusieurs VLANs, tag 802.1Q"},{l:"Voice",r:"VLAN données + VLAN voix"},{l:"Native",r:"VLAN non tagué sur trunk"}],d:2,x:"Port access = un VLAN, trames non taguées. Port trunk = plusieurs VLANs avec tag 802.1Q. Mode voice = combinaison pour téléphonie IP. VLAN natif = VLAN des trames sans tag sur un trunk."}
+{t:'match',q:"Associe chaque mode VLAN de port switch à sa description.",pairs:[{l:"Access",r:"Un seul VLAN, pas de tag"},{l:"Trunk",r:"Plusieurs VLANs, tag 802.1Q"},{l:"Voice",r:"VLAN données + VLAN voix"},{l:"Native",r:"VLAN non tagué sur trunk"}],d:2,x:"Port access = un VLAN, trames non taguées. Port trunk = plusieurs VLANs avec tag 802.1Q. Mode voice = combinaison pour téléphonie IP. VLAN natif = VLAN des trames sans tag sur un trunk."},
+{t:'type',q:"Sur quel port HTTP WinRM écoute-t-il par défaut ?",a:"5985",aliases:["port 5985","5985/tcp"],d:1,x:"WinRM utilise le port 5985 (HTTP) ou 5986 (HTTPS). Base de PowerShell Remoting."},
+{t:'type',q:"Quelle commande Cisco entre en mode configuration globale ?",a:"configure terminal",aliases:["conf t","configure t"],d:1,x:"'configure terminal' (raccourci : conf t) entre en mode (config)# depuis le mode privilégié."},
+{t:'type',q:"Quelle commande Windows vide le cache DNS local ?",a:"ipconfig /flushdns",aliases:["ipconfig/flushdns","/flushdns","flushdns"],d:1,x:"ipconfig /flushdns vide le cache DNS local. Le serveur DNS sera re-contacté à la prochaine résolution de nom."},
+{t:'type',q:"Quel fichier contient la base de données Active Directory ?",a:"ntds.dit",aliases:["ntds"],d:2,x:"ntds.dit est la base de données AD, stockée dans C:\\Windows\\NTDS. Elle contient tous les objets du domaine (users, groupes, ordinateurs...)."},
+{t:'type',q:"Donnez la signification complète de l'acronyme RPO.",a:"recovery point objective",aliases:["Recovery Point Objective","RPO"],d:2,x:"RPO = Recovery Point Objective. Définit jusqu'où peut-on revenir dans le temps en cas de sinistre. À ne pas confondre avec RTO (Recovery Time Objective = durée d'arrêt tolérable)."},
+{t:'slider',q:"Combien d'hôtes utilisables dans un réseau /26 ?",min:0,max:254,step:1,a:62,tolerance:0,d:2,x:"Bits hôtes = 32 - 26 = 6. Formule : 2^6 - 2 = 64 - 2 = 62 hôtes utilisables."},
+{t:'slider',q:"Combien de bits hôtes dans un masque /28 ?",min:0,max:32,step:1,a:4,tolerance:0,d:2,x:"Un /28 = 28 bits réseau. Bits hôtes = 32 - 28 = 4 bits → 2^4 - 2 = 14 hôtes utilisables."}
 ]},
 cisco:{label:"Cisco IOS — Commandes",icon:"🔵",desc:"Commandes IOS, config, dépannage",cat:"cat-cisco",qs:[
 {t:'qcm',q:"Quelle commande entre en mode configuration globale sur un Cisco ?",opts:["enable","configure terminal","conf global","set config mode"],a:1,d:1,x:"'configure terminal' (ou 'conf t') entre en mode configuration globale (config)# depuis le mode privilégié."},
@@ -2135,7 +2215,9 @@ cisco:{label:"Cisco IOS — Commandes",icon:"🔵",desc:"Commandes IOS, config, 
 {t:'fill',q:"Complète la commande pour afficher les logs système sur un Cisco :",code:"Router# show ___",blank:"___",opts:["logging","syslog","log","events"],a:0,d:1,x:"'show logging' affiche le buffer de logs Cisco. Indispensable pour le dépannage."},
 {t:'fill',q:"Complète la commande pour effacer la config sauvegardée sur un Cisco :",code:"Router# ___ startup-config",blank:"___",opts:["erase","delete","clear","remove"],a:0,d:2,x:"'erase startup-config' efface la config en NVRAM. Après un reload, l'équipement démarrera avec une config vide."},
 {t:'debug',q:"Identifie l'erreur dans cette séquence de sauvegarde Cisco :",code:"R1# configure terminal\nR1(config)# hostname ROUTEUR-1\nR1(config)# exit\nR1# copy startup-config running-config\nR1# reload",errorLine:"R1# copy startup-config running-config",opts:["Il faut 'copy running-config startup-config' pour sauvegarder","La commande reload doit venir avant le copy","Le hostname doit être sauvegardé séparément","La commande exit n'est pas nécessaire"],a:0,d:2,x:"L'erreur est dans le sens de la copie. 'copy startup-config running-config' CHARGE la startup dans la RAM (écrase les changements). Il faut 'copy running-config startup-config' pour SAUVEGARDER."},
-{t:'word',q:"Sélectionne toutes les commandes Cisco qui permettent de quitter un sous-mode de configuration.",words:["exit","end","quit","Ctrl+Z","no","^C","logout","return"],correct:["exit","end","Ctrl+Z"],d:2,x:"Pour quitter un sous-mode : 'exit' remonte dun niveau, 'end' ou 'Ctrl+Z' remonte directement au mode privilégié (#). 'quit' n'existe pas sur Cisco IOS. 'no' annule une commande mais ne quitte pas le mode."}
+{t:'word',q:"Sélectionne toutes les commandes Cisco qui permettent de quitter un sous-mode de configuration.",words:["exit","end","quit","Ctrl+Z","no","^C","logout","return"],correct:["exit","end","Ctrl+Z"],d:2,x:"Pour quitter un sous-mode : 'exit' remonte dun niveau, 'end' ou 'Ctrl+Z' remonte directement au mode privilégié (#). 'quit' n'existe pas sur Cisco IOS. 'no' annule une commande mais ne quitte pas le mode."},
+{t:'scramble',q:"Remets dans l'ordre les mots de cette commande Cisco pour sauvegarder la configuration :",word:"copy running-config startup-config",hint:"RAM → NVRAM",d:2,x:"'copy running-config startup-config' sauvegarde la config active (RAM) vers la NVRAM. L'ordre est copy SOURCE DESTINATION sur IOS."},
+{t:'scramble',q:"Remets dans l'ordre les mots de cette commande Cisco pour activer une interface :",word:"no shutdown",hint:"Interfaces routeur désactivées par défaut",d:1,x:"'no shutdown' active l'interface. 'shutdown' la désactive. Les interfaces routeur Cisco sont en shutdown par défaut — pas les ports switch."}
 ]},
 vlan:{label:"VLANs & Trunks",icon:"🔶",desc:"VLANs, trunks, DTP, VTP, inter-VLAN",cat:"cat-vlan",qs:[
 {t:'qcm',q:"Quelle commande crée un VLAN 10 et le nomme RH ?",opts:["vlan 10 name RH","create vlan 10 name RH","set vlan 10 name RH","vlan name 10 RH"],a:0,d:1,x:"En mode (config)# : 'vlan 10' entre dans la config du VLAN, puis 'name RH' lui donne un nom."},
@@ -2328,7 +2410,9 @@ raid:{label:"Stockage & RAID",icon:"💾",desc:"RAID, DAS, NAS, SAN, iSCSI",cat:
 {t:'tf',q:"Le RAID est un remplacement suffisant pour une sauvegarde de données.",a:false,d:2,x:"Faux. Le RAID protège contre la panne de disque mais pas contre la suppression accidentelle, les ransomwares, les incendies ou les vols. Une vraie stratégie de sauvegarde (règle 3-2-1) est indispensable."},
 {t:'tf',q:"Un contrôleur RAID matériel offre de meilleures performances qu'un RAID logiciel.",a:true,d:2,x:"Vrai. Un contrôleur RAID matériel a son propre processeur et mémoire cache. Le RAID logiciel (géré par l'OS) consomme des ressources CPU du serveur."},
 {t:'fill',q:"Complète la formule de capacité utile pour un RAID 6 :",code:"Capacité utile = (___ - 2) × taille dun disque\nExemple : 8 disques de 1 To → (8-2) × 1 = 6 To",blank:"___",opts:["n (nombre de disques)","n - 1","n / 2","n × 2"],a:0,d:2,x:"RAID 6 : capacité utile = (n-2) × taille. Le '-2' représente les 2 disques équivalents utilisés pour la double parité."},
-{t:'word',q:"Sélectionne tous les niveaux RAID qui permettent de perdre exactement 1 disque sans perte de données.",words:["RAID 0","RAID 1","RAID 5","RAID 6","RAID 10","JBOD","RAID 50","RAID 60"],correct:["RAID 1","RAID 5","RAID 10","RAID 50"],d:3,x:"Tolèrent exactement 1 panne : RAID 1 (miroir), RAID 5 (parité simple), RAID 10 (tolère 1 panne par groupe miroir), RAID 50 (tolère 1 panne par groupe RAID 5). RAID 6 et RAID 60 tolèrent 2 pannes. RAID 0 et JBOD n'ont aucune tolérance."}
+{t:'word',q:"Sélectionne tous les niveaux RAID qui permettent de perdre exactement 1 disque sans perte de données.",words:["RAID 0","RAID 1","RAID 5","RAID 6","RAID 10","JBOD","RAID 50","RAID 60"],correct:["RAID 1","RAID 5","RAID 10","RAID 50"],d:3,x:"Tolèrent exactement 1 panne : RAID 1 (miroir), RAID 5 (parité simple), RAID 10 (tolère 1 panne par groupe miroir), RAID 50 (tolère 1 panne par groupe RAID 5). RAID 6 et RAID 60 tolèrent 2 pannes. RAID 0 et JBOD n'ont aucune tolérance."},
+{t:'slider',q:"Nombre minimum de disques pour un RAID 5 ?",min:2,max:10,step:1,a:3,tolerance:0,d:1,x:"RAID 5 nécessite minimum 3 disques. 1 disque équivalent est réservé pour la parité répartie. Capacité = (n-1) × taille d'un disque."},
+{t:'slider',q:"Capacité utile en To d'un RAID 6 avec 5 disques de 2 To ?",min:0,max:10,step:1,a:6,unit:"To",tolerance:0,d:2,x:"RAID 6 : (n-2) × taille = (5-2) × 2 = 6 To. 2 disques équivalents pour la double parité. 4 To sont utilisés pour la redondance."}
 ]},
 cmd:{label:"Commandes Cisco & Windows",icon:"⌨️",desc:"Commandes clés à connaître pour l'exam",cat:"cat-cmd",qs:[
 {t:'qcm',q:"Quelle commande Windows affiche les connexions réseau actives ?",opts:["ipconfig /all","netstat -an","arp -a","route print"],a:1,d:1,x:"'netstat -an' affiche toutes les connexions TCP/UDP actives et les ports en écoute."},
@@ -2364,7 +2448,20 @@ ad:{label:"Active Directory",icon:"🏛️",desc:"AD DS, GPO, Kerberos, OU, util
 {t:'fill',q:"Complète la commande pour joindre un PC à un domaine AD :",code:"Add-Computer -DomainName 'domaine.local'\n  -___ (Get-Credential) -Restart",blank:"___",opts:["Credential","Password","Auth","Domain"],a:0,d:2,x:"Add-Computer -Credential permet de spécifier les identifiants dun compte autorisé à joindre des machines au domaine."},
 {t:'debug',q:"Identifie l'erreur dans cette configuration AD :",code:"New-ADUser -Name 'Pierre Martin' -Enabled $true\nAdd-ADGroupMember -Identity 'GRP-IT' -Members 'pierre martin'\n# Erreur : utilisateur introuvable",errorLine:"Add-ADGroupMember -Identity 'GRP-IT' -Members 'pierre martin'",opts:["Le SamAccountName par défaut diffère du Name","New-ADUser nécessite un mot de passe","Le groupe GRP-IT n'existe pas","Add-ADGroupMember doit venir avant New-ADUser"],a:0,d:3,x:"Sans -SamAccountName explicite, AD utilise le Name complet. Ici 'pierre martin' ne correspond pas au SamAccountName généré. Toujours spécifier -SamAccountName."},
 {t:'word',q:"Sélectionne tous les ports utilisés par Active Directory pour ses services principaux.",words:["Port 88 — Kerberos","Port 389 — LDAP","Port 80 — HTTP","Port 636 — LDAPS","Port 445 — SMB/RPC","Port 53 — DNS","Port 22 — SSH","Port 3389 — RDP"],correct:["Port 88 — Kerberos","Port 389 — LDAP","Port 636 — LDAPS","Port 445 — SMB/RPC","Port 53 — DNS"],d:3,x:"Les ports AD essentiels : 53 (DNS, obligatoire), 88 (Kerberos), 389 (LDAP), 445 (SMB/RPC pour les GPO et la réplication), 636 (LDAPS). HTTP, SSH et RDP ne font pas partie des services AD core."},
-{t:'order',q:"Remets dans l'ordre les étapes de l'authentification Kerberos dans un domaine AD :",items:["Client demande un TGT au KDC (AS-REQ)","KDC retourne le TGT chiffré (AS-REP)","Client demande un TGS pour le service cible (TGS-REQ)","KDC retourne le ticket de service (TGS-REP)","Client présente le ticket au serveur cible"],d:3,x:"Authentification Kerberos : 1) Client → KDC : demande TGT → 2) KDC → Client : TGT → 3) Client → KDC : demande TGS → 4) KDC → Client : TGS → 5) Client → Serveur : présente TGS."}
+{t:'order',q:"Remets dans l'ordre les étapes de l'authentification Kerberos dans un domaine AD :",items:["Client demande un TGT au KDC (AS-REQ)","KDC retourne le TGT chiffré (AS-REP)","Client demande un TGS pour le service cible (TGS-REQ)","KDC retourne le ticket de service (TGS-REP)","Client présente le ticket au serveur cible"],d:3,x:"Authentification Kerberos : 1) Client → KDC : demande TGT → 2) KDC → Client : TGT → 3) Client → KDC : demande TGS → 4) KDC → Client : TGS → 5) Client → Serveur : présente TGS."},
+{t:'qcm',q:"Quel est l'ordre d'application des GPO selon le modèle LSDOU ?",opts:["Local → Site → Domain → OU","OU → Domain → Site → Local","Domain → OU → Site → Local","Site → Domain → Local → OU"],a:0,d:2,x:"LSDOU : Local → Site → Domain → OU. La GPO appliquée en dernier (OU enfant, la plus proche de l'objet) gagne en cas de conflit. Mémo : l'OU la plus basse dans la hiérarchie a la priorité la plus haute."},
+{t:'tf',q:"Dans LSDOU, une GPO liée à une OU enfant est prioritaire sur une GPO liée au domaine.",a:true,d:2,x:"Vrai. L'OU est appliquée en dernier dans LSDOU → elle gagne en cas de conflit. Exemple : GPO domaine = fond bleu, GPO OU RH = fond rouge → Alice dans OU RH voit fond rouge."},
+{t:'qcm',q:"Que fait 'Block Inheritance' configuré sur une OU dans GPMC ?",opts:["Empêche les GPO de cette OU de descendre vers les enfants","Empêche les GPO des niveaux supérieurs de s'appliquer à cette OU","Force toutes les GPO parentes à s'appliquer","Désactive les GPO locales de la machine"],a:1,d:2,x:"Block Inheritance empêche les GPO des niveaux SUPÉRIEURS (domaine, site, OU parente) de descendre dans cette OU. Affiché par un icône bleu avec point d'exclamation dans GPMC."},
+{t:'tf',q:"'Enforced' sur une GPO l'emporte toujours sur 'Block Inheritance', sans aucune exception.",a:true,d:2,x:"Vrai. Règle absolue : Enforced bat TOUJOURS Block Inheritance. Une GPO Enforced s'applique partout même si l'OU a Block Inheritance actif. Représenté par un cadenas dans GPMC."},
+{t:'qcm',q:"Une GPO est physiquement composée de 2 parties. Lesquelles ?",opts:["GPC (Active Directory) + GPT (SYSVOL)","GPC (SYSVOL) + GPT (Active Directory)","GPO-Machine + GPO-User","GPT (registre) + GPC (réseau)"],a:0,d:2,x:"GPC (Group Policy Container) = dans AD, contient les métadonnées. GPT (Group Policy Template) = dans SYSVOL, contient les fichiers réels. Si GPC/GPT désynchronisés (problème réplication SYSVOL) → la GPO apparaît dans GPMC mais ne s'applique pas."},
+{t:'qcm',q:"La Configuration Ordinateur d'une GPO est appliquée à quel moment ?",opts:["À l'ouverture de session utilisateur","Au démarrage de Windows, avant le login","Toutes les 5 minutes en arrière-plan","Lors de l'installation du rôle AD DS"],a:1,d:1,x:"Config Ordinateur = appliquée au DÉMARRAGE (avant le login). Config Utilisateur = appliquée à l'OUVERTURE DE SESSION. C'est pourquoi certains paramètres nécessitent un redémarrage pour s'appliquer."},
+{t:'qcm',q:"Quelle commande force le rafraîchissement immédiat de toutes les GPO ?",opts:["gpmc.msc /refresh","gpupdate /force","gpresult /R","gpedit.msc /apply"],a:1,d:1,x:"gpupdate /force rafraîchit immédiatement les sections Ordinateur et Utilisateur. Rafraîchissement automatique : toutes les 90 min (± 30 aléatoire) pour les clients, toutes les 5 min pour les DC."},
+{t:'tf',q:"'Non configuré' dans une GPO est équivalent à 'Désactivé' pour ce paramètre.",a:false,d:2,x:"Faux. 'Non configuré' = cette GPO ne touche pas à ce paramètre → une autre GPO peut l'influencer. 'Désactivé' impose explicitement la valeur OFF. Confusion classique en exam : non configuré ≠ désactivé."},
+{t:'qcm',q:"Quel outil génère le rapport RSoP le plus complet pour diagnostiquer une GPO ?",opts:["gpmc.msc","gpedit.msc","gpresult /H rapport.html","rsop.msc"],a:2,d:2,x:"gpresult /H génère un rapport HTML complet du RSoP (Resultant Set of Policy). rsop.msc est graphique mais ne montre PAS pourquoi une GPO n'est pas appliquée. gpresult est l'outil #1 pour le dépannage GPO."},
+{t:'qcm',q:"Quelle est la bonne pratique concernant la Default Domain Policy ?",opts:["Y ajouter tous les paramètres de sécurité pour simplifier","Ne jamais la modifier — créer une GPO dédiée à la place","La supprimer et recréer avec ses propres paramètres","La désactiver en production"],a:1,d:2,x:"Bonne pratique ANSSI : ne JAMAIS modifier la Default Domain Policy. Créer une GPO dédiée et la lier au domaine. Facilite le dépannage et permet de retrouver les valeurs Microsoft par défaut si besoin."},
+{t:'match',q:"Associe chaque outil GPO à son usage principal.",pairs:[{l:"gpmc.msc",r:"Console de gestion des GPO"},{l:"gpupdate /force",r:"Rafraîchir les GPO immédiatement"},{l:"gpresult /H",r:"Rapport RSoP complet HTML"},{l:"SYSVOL",r:"Partage contenant les fichiers GPO"}],d:2,x:"GPMC = console principale création/liaison. gpupdate = forcer l'application. gpresult = diagnostiquer les GPO appliquées/refusées. SYSVOL = partage réseau des DC contenant les fichiers réels des GPO (GPT)."},
+{t:'scramble',q:"Remets dans l'ordre les lettres de l'acronyme qui définit l'ordre d'application des GPO :",word:"LSDOU",hint:"Local → Site → Domain → OU",d:2,x:"LSDOU = Local → Site → Domain → OU. La GPO la plus proche (OU enfant) est appliquée en dernier et gagne en cas de conflit."},
+{t:'scramble',q:"Remets dans l'ordre les lettres de la méthode Microsoft d'attribution des droits dans AD :",word:"AGDLP",hint:"Comptes → Globaux → Domaine Local → Permissions",d:2,x:"AGDLP : Accounts → Global groups → Domain Local groups → Permissions. Méthode recommandée pour organiser les droits dans Active Directory."}
 ]},
 wlan:{label:"WLAN & Sans Fil",icon:"📡",desc:"Wi-Fi, sécurité sans fil, CAPWAP",cat:"cat-cisco",qs:[
 {t:'qcm',q:"Quelle norme Wi-Fi fonctionne sur les bandes 2,4 GHz ET 5 GHz ?",opts:["802.11a — 5 GHz uniquement","802.11b — 2,4 GHz uniquement","802.11n (Wi-Fi 4) — dual band","802.11g — 2,4 GHz uniquement"],a:2,d:1,x:"802.11n (Wi-Fi 4) est la première norme dual-band (2,4 GHz et 5 GHz). 802.11a = 5 GHz, 802.11b/g = 2,4 GHz uniquement."},
@@ -2400,12 +2497,32 @@ ps:{label:"PowerShell",icon:"⌨️",desc:"Cmdlets, pipeline, scripts, gestion W
 {t:'word',q:"Sélectionne toutes les cmdlets PowerShell qui font partie du module Active Directory.",words:["Get-ADUser","Get-Service","New-ADGroup","Get-Process","Add-ADGroupMember","Set-ADUser","Get-EventLog","Get-ADComputer"],correct:["Get-ADUser","New-ADGroup","Add-ADGroupMember","Set-ADUser","Get-ADComputer"],d:2,x:"Les cmdlets AD (module ActiveDirectory) : Get/Set/New/Remove-ADUser, Get/New/Remove-ADGroup, Add/Remove-ADGroupMember, Get/Set-ADComputer, Get-ADDomain... Get-Service, Get-Process et Get-EventLog sont des cmdlets Windows générales."},
 {t:'order',q:"Remets dans l'ordre le pipeline pour exporter les services arrêtés dans un CSV :",items:["Get-Service","Where-Object {$_.Status -eq 'Stopped'}","Select-Object Name, Status","Export-Csv -Path 'stopped.csv'"],d:2,x:"Ordre logique : 1) Récupérer les services 2) Filtrer les arrêtés 3) Sélectionner les propriétés utiles 4) Exporter en CSV."}
 ]},
+sauvegarde:{label:"Sauvegarde & PRA",icon:"💾",desc:"Méthodes, RTO/RPO, PRA/PCA, règle 3-2-1",cat:"cat-windows",qs:[
+{t:'qcm',q:"Quelle méthode de sauvegarde copie uniquement les données modifiées depuis la dernière sauvegarde complète ?",opts:["Sauvegarde complète","Sauvegarde différentielle","Sauvegarde incrémentielle","Sauvegarde par image"],a:1,d:1,x:"La différentielle capture les modifications depuis la dernière COMPLÈTE. L'incrémentielle capture depuis la dernière sauvegarde quelle qu'elle soit. Avantage différentielle : restauration en seulement 2 étapes (complète + 1 diff)."},
+{t:'qcm',q:"Quelle méthode de sauvegarde utilise le moins d'espace disque ?",opts:["Complète","Différentielle","Incrémentielle","Par image disque"],a:2,d:1,x:"L'incrémentielle ne sauvegarde que le delta depuis la dernière sauvegarde → espace minimal. Inconvénient majeur : restauration complexe, chaîne entière obligatoire (complète + tous les incréments)."},
+{t:'qcm',q:"Pour restaurer depuis une incrémentielle du jeudi (complète lundi), que faut-il ?",opts:["La complète + la diff du jeudi uniquement","La complète du lundi uniquement","La complète + TOUTES les incrémentales jusqu'au jeudi","La sauvegarde du jeudi uniquement"],a:2,d:2,x:"Incrémentielle = chaîne obligatoire. Pour jeudi : complète (lundi) + incrémentale mardi + mercredi + jeudi. Si un maillon manque → restauration impossible. Principal inconvénient vs la différentielle."},
+{t:'qcm',q:"Que signifie RTO ?",opts:["Recovery Point Objective — jusqu'où remonter dans le temps","Recovery Time Objective — temps maximal d'indisponibilité toléré","Restore Total Output — volume restaurable","Rollback Time Override — délai retour arrière"],a:1,d:2,x:"RTO = Recovery Time Objective = durée maximale d'indisponibilité acceptable. RPO = Recovery Point Objective = jusqu'à quel moment passé peut-on revenir. RTO = durée d'arrêt, RPO = perte de données. Classiquement confondus en exam."},
+{t:'qcm',q:"Quelle est la différence fondamentale entre PRA et PCA ?",opts:["PRA = Cloud, PCA = local","PRA = reprendre après interruption, PCA = ne jamais s'interrompre","PRA = données utilisateurs, PCA = applications","PRA = mensuel, PCA = quotidien"],a:1,d:2,x:"PRA (Plan de Reprise d'Activité) = reprendre après une interruption tolérée. PCA (Plan de Continuité d'Activité) = maintenir l'activité sans aucune interruption. Le PCA est plus ambitieux et plus coûteux (infrastructure redondante active)."},
+{t:'qcm',q:"Que signifie la règle 3-2-1 appliquée aux sauvegardes ?",opts:["3 sauvegardes/jour, 2/semaine, 1/mois","3 copies des données, 2 supports différents, 1 copie hors site","3 disques RAID, 2 NAS, 1 bande","3 cycles de test, 2 validations, 1 déploiement"],a:1,d:1,x:"Règle 3-2-1 : 3 copies des données, sur 2 types de supports différents (HDD, NAS, bande, cloud...), dont 1 copie hors site. Protège contre tout scénario : ransomware, incendie, panne matérielle, vol."},
+{t:'tf',q:"Le RAID est une solution de sauvegarde suffisante pour protéger les données d'une entreprise.",a:false,d:1,x:"Faux. Le RAID protège contre la panne de disque(s) mais pas contre les ransomwares (le miroir est aussi chiffré), la suppression accidentelle, les incendies ou le vol. Il doit être combiné avec une vraie solution de sauvegarde."},
+{t:'tf',q:"Une sauvegarde différentielle nécessite uniquement la sauvegarde complète + la dernière différentielle pour restaurer.",a:true,d:2,x:"Vrai. La différentielle capture TOUJOURS les changements depuis la dernière COMPLÈTE. Restauration = complète + 1 seule diff. Avantage principal sur l'incrémentielle qui exige toute la chaîne."},
+{t:'tf',q:"Un RPO de 4 heures signifie qu'on peut tolérer de perdre jusqu'à 4 heures de données.",a:true,d:2,x:"Vrai. RPO = Recovery Point Objective. Un RPO de 4h signifie que les données des 4 dernières heures peuvent être perdues en cas de sinistre — les sauvegardes doivent donc avoir lieu au minimum toutes les 4h."},
+{t:'tf',q:"Le PCA (Plan de Continuité) est moins coûteux que le PRA (Plan de Reprise).",a:false,d:2,x:"Faux. Le PCA vise ZÉRO interruption → infrastructure redondante active, cluster, site de secours → plus coûteux. Le PRA tolère une interruption puis reprend → moins coûteux. PCA plus ambitieux que PRA."},
+{t:'qcm',q:"Quelle stratégie de sauvegarde est souvent recommandée en entreprise pour le meilleur équilibre ?",opts:["Incrémentielle tous les jours, rien le week-end","Complète le week-end + différentielles en semaine","Complète chaque jour + snapshot hebdomadaire","Différentielle chaque jour uniquement"],a:1,d:2,x:"Stratégie classique : complète le week-end (référence) + différentielles en semaine (moins d'espace, restauration en 2 étapes max). Bon équilibre espace disque / simplicité de restauration."},
+{t:'calc',q:"Complète lundi = 50 Go. Diff mercredi = 8 Go. Combien de Go à traiter pour restaurer l'état de mercredi ?",setup:"Stratégie complète + différentielle\nComplète lundi : 50 Go\nDiff mercredi : 8 Go (delta depuis la complète)\nRestauration = complète + diff du jour",opts:[{v:"8 Go",sub:"diff seule"},{v:"58 Go",sub:"50 + 8"},{v:"63 Go",sub:"erreur : 50+5+8"},{v:"50 Go",sub:"complète seule"}],a:1,d:2,x:"Différentielle = toujours depuis la dernière complète. Restauration mercredi = 50 Go (complète) + 8 Go (diff mercredi) = 58 Go. Contrairement à l'incrémentielle, une seule diff suffit."},
+{t:'word',q:"Sélectionne tous les risques contre lesquels la sauvegarde protège mais PAS le RAID seul.",words:["Panne d'un seul disque dur","Ransomware","Incendie des locaux","Suppression accidentelle","Coupure électrique courte","Corruption logique de données","Vol de serveur","Double panne disque RAID 1"],correct:["Ransomware","Incendie des locaux","Suppression accidentelle","Corruption logique de données","Vol de serveur"],d:2,x:"Le RAID protège uniquement contre la panne physique de disque(s). La sauvegarde couvre en plus : ransomware (le miroir RAID réplique aussi le chiffrement), incendie, suppression accidentelle, corruption logique, vol."},
+{t:'match',q:"Associe chaque terme PRA/PCA à sa définition.",pairs:[{l:"RTO",r:"Durée max d'indisponibilité"},{l:"RPO",r:"Perte de données maximale tolérée"},{l:"PRA",r:"Reprendre après interruption"},{l:"PCA",r:"Zéro interruption d'activité"}],d:2,x:"RTO = durée max d'arrêt tolérable. RPO = jusqu'où peut-on remonter dans le temps. PRA = Plan de Reprise (arrêt toléré puis reprise). PCA = Plan de Continuité (aucune interruption, plus coûteux)."},
+{t:'order',q:"Remets dans l'ordre les étapes d'une restauration incrémentielle (complète lundi, incrémentales mar/mer/jeu).",items:["Identifier et vérifier la sauvegarde complète (lundi)","Restaurer la sauvegarde complète","Appliquer l'incrémentielle du mardi","Appliquer l'incrémentielle du mercredi","Appliquer l'incrémentielle du jeudi","Vérifier l'intégrité des données restaurées"],d:2,x:"Restauration incrémentielle = ordre chronologique strict. D'abord la complète, puis TOUS les incréments dans l'ordre. Si un maillon manque → restauration impossible. C'est pourquoi complète + différentielle est souvent préférée."},
+{t:'fill',q:"Complète l'acronyme : RPO = Recovery ___ Objective",code:"Contexte PRA :\nUn RPO de 2 heures signifie que la perte\nmaximale de données tolérée est de 2 heures.\n\nRPO = Recovery ___ Objective",blank:"___",opts:["Point","Period","Plan","Protocol"],a:0,d:1,x:"RPO = Recovery Point Objective. Définit le point dans le temps jusqu'auquel on peut revenir. Plus le RPO est court → sauvegardes plus fréquentes → coût plus élevé. RTO = Recovery TIME Objective (durée d'indisponibilité)."},
+{t:'type',q:"Donnez la signification complète de l'acronyme PCA.",a:"plan de continuite d activite",aliases:["plan de continuité d'activité","plan de continuité","PCA","plan continuité activité"],d:2,x:"PCA = Plan de Continuité d'Activité. Vise à maintenir l'activité sans aucune interruption. Plus ambitieux et plus coûteux que le PRA (Plan de Reprise d'Activité)."},
+{t:'type',q:"Quelle méthode de sauvegarde sauvegarde le moins de données à chaque exécution ?",a:"incrementielle",aliases:["incrémentielle","incrementale","incrémentale"],d:1,x:"L'incrémentielle ne sauvegarde que le delta depuis la dernière sauvegarde (quelle qu'elle soit) → espace minimal. Inconvénient : restauration complexe (toute la chaîne est nécessaire)."}
+]},
 mix:{label:"Mix — Tout en vrac",icon:"🎲",desc:"Toutes catégories et mécaniques mélangées",cat:"cat-mix",qs:[]}
 };
 // Build mix
 (function(){var ids=['reseau','cisco','vlan','stp','routage','secu','windows','dns','ntfs','hyperv','raid','cmd','ad','wlan','ps'];ids.forEach(function(id){CATS.mix.qs=CATS.mix.qs.concat(CATS[id].qs.map(function(q){return Object.assign({},q,{_cat:CATS[id].label});}));});})();
 
-var MECH_INFO={qcm:{label:'QCM',cls:'mp-qcm',hint:'A·B·C·D / Espace'},match:{label:'ASSOCIER',cls:'mp-word',hint:'Clique gauche puis droite'},tf:{label:'VRAI / FAUX',cls:'mp-tf',hint:'← Vrai  /  Faux →'},fill:{label:'COMPLÉTER',cls:'mp-fill',hint:'Clique sur la réponse'},order:{label:'REMETTRE EN ORDRE',cls:'mp-order',hint:'▲▼ ou glisse puis VALIDER'},calc:{label:'CALCUL',cls:'mp-calc',hint:'Clique sur ta réponse'},debug:{label:'TROUVER L\'ERREUR',cls:'mp-debug',hint:'A·B·C·D / Espace'},word:{label:'SÉLECTIONNER',cls:'mp-word',hint:'Clique les bons mots puis VALIDER'}};
+var MECH_INFO={qcm:{label:'QCM',cls:'mp-qcm',hint:'A·B·C·D / Espace'},match:{label:'ASSOCIER',cls:'mp-word',hint:'Clique gauche puis droite'},tf:{label:'VRAI / FAUX',cls:'mp-tf',hint:'← Vrai  /  Faux →'},fill:{label:'COMPLÉTER',cls:'mp-fill',hint:'Clique sur la réponse'},order:{label:'REMETTRE EN ORDRE',cls:'mp-order',hint:'▲▼ ou glisse puis VALIDER'},calc:{label:'CALCUL',cls:'mp-calc',hint:'Clique sur ta réponse'},debug:{label:'TROUVER L\'ERREUR',cls:'mp-debug',hint:'A·B·C·D / Espace'},word:{label:'SÉLECTIONNER',cls:'mp-word',hint:'Clique les bons mots puis VALIDER'},type:{label:'SAISIE LIBRE',cls:'mp-fill',hint:'Tape ta réponse + Entrée'},slider:{label:'CURSEUR',cls:'mp-calc',hint:'Glisse le curseur puis confirme'},scramble:{label:'ANAGRAMME',cls:'mp-order',hint:'Clique les tuiles dans l\'ordre'}};
 // Couleur signature par mode (override --acc temporairement)
 var MODE_COLORS={
   chill:'#38bdf8', speed:'#22d3ee', survie:'#fb923c', blitz:'#ef4444',
@@ -2614,6 +2731,140 @@ function markShown(session){
   if(keys.length>500){var del=keys.slice(0,keys.length-500);del.forEach(function(k){delete _shownQids[k];});}
 }
 
+
+// ============================================================
+// MÉCANIQUE TYPE — Saisie libre
+// ============================================================
+function normalizeStr(s){
+  return String(s).toLowerCase().trim()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+    .replace(/\s+/g,' ')
+    .replace(/[.,;:!?'"]/g,'');
+}
+function renderType(q,area){
+  var wrap=document.createElement('div');wrap.className='type-wrap';
+  var input=document.createElement('input');
+  input.type='text';input.className='type-input';
+  input.placeholder='Tape ta réponse ici...';input.id='type-input';
+  input.autocomplete='off';input.autocorrect='off';input.spellcheck=false;
+  var btn=document.createElement('button');btn.className='type-submit-btn';btn.textContent='✓ VALIDER';
+  var hint=document.createElement('div');hint.className='type-hint';hint.textContent='⌨ Entrée ou clic pour valider';
+  function doSubmit(){if(answered)return;var v=input.value.trim();if(!v)return;resolveType(v,input,q);}
+  btn.onclick=doSubmit;
+  input.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();doSubmit();}});
+  wrap.appendChild(input);wrap.appendChild(btn);wrap.appendChild(hint);
+  area.appendChild(wrap);
+  setTimeout(function(){input.focus();},80);
+}
+function resolveType(val,input,q){
+  clearInterval(timerInt);answered=true;
+  input.disabled=true;
+  var btns=document.querySelectorAll('.type-submit-btn');btns.forEach(function(b){b.disabled=true;});
+  var nVal=normalizeStr(val);
+  var accepted=Array.isArray(q.a)?q.a.slice():[q.a];
+  if(q.aliases) accepted=accepted.concat(q.aliases);
+  var ok=accepted.some(function(a){return normalizeStr(a)===nVal;});
+  input.className='type-input '+(ok?'ok-input':'err-input');
+  if(!ok){
+    var correct=Array.isArray(q.a)?q.a[0]:q.a;
+    var reveal=document.createElement('div');reveal.className='type-correct-reveal';reveal.textContent='✓ Réponse attendue : '+correct;
+    input.parentNode.appendChild(reveal);
+    errors.push({q:q.q,yours:val,correct:correct,x:q.x,orig:q,mech:'type'});
+  }
+  resolveCommon(ok,q);
+}
+
+// ============================================================
+// MÉCANIQUE SLIDER — Curseur numérique
+// ============================================================
+function renderSlider(q,area){
+  var wrap=document.createElement('div');wrap.className='slider-wrap';
+  var midVal=Math.round((q.min+q.max)/2);
+  var display=document.createElement('div');display.className='slider-display';display.id='slider-display';
+  display.innerHTML=midVal+(q.unit?'<span class="slider-unit">'+q.unit+'</span>':'');
+  var track=document.createElement('div');track.className='slider-track';
+  var slider=document.createElement('input');slider.type='range';slider.className='slider-input';
+  slider.min=q.min;slider.max=q.max;slider.step=q.step||1;slider.value=midVal;slider.id='slider-input';
+  var bounds=document.createElement('div');bounds.className='slider-bounds';
+  bounds.innerHTML='<span>'+q.min+(q.unit?' '+q.unit:'')+'</span><span>'+q.max+(q.unit?' '+q.unit:'')+'</span>';
+  slider.oninput=function(){
+    var v=parseInt(slider.value);
+    display.innerHTML=v+(q.unit?'<span class="slider-unit">'+q.unit+'</span>':'');
+  };
+  var btn=document.createElement('button');btn.className='slider-submit-btn';btn.textContent='✓ CONFIRMER';
+  btn.onclick=function(){if(!answered)resolveSlider(parseInt(slider.value),display,slider,q);};
+  track.appendChild(slider);track.appendChild(bounds);
+  wrap.appendChild(display);wrap.appendChild(track);wrap.appendChild(btn);
+  area.appendChild(wrap);
+}
+function resolveSlider(val,display,slider,q){
+  clearInterval(timerInt);answered=true;slider.disabled=true;
+  var btns=document.querySelectorAll('.slider-submit-btn');btns.forEach(function(b){b.disabled=true;});
+  var tol=q.tolerance||0;var ok=Math.abs(val-q.a)<=tol;
+  display.className='slider-display '+(ok?'ok-val':'err-val');
+  if(!ok){
+    display.innerHTML=val+(q.unit?'<span class="slider-unit">'+q.unit+'</span>':'')+' &nbsp;<span style="font-size:14px;color:var(--text2)">→ réponse : '+q.a+(q.unit?' '+q.unit:'')+'</span>';
+    errors.push({q:q.q,yours:String(val),correct:String(q.a),x:q.x,orig:q,mech:'slider'});
+  }
+  resolveCommon(ok,q);
+}
+
+// ============================================================
+// MÉCANIQUE SCRAMBLE — Anagramme tuiles
+// ============================================================
+var _scrUserAns=[],_scrTokens=[];
+function renderScramble(q,area){
+  _scrUserAns=[];_scrTokens=[];
+  var isLetters=!q.word.includes(' ');
+  var tokens=isLetters?q.word.toUpperCase().split(''):q.word.toUpperCase().split(' ');
+  _scrTokens=shuffle(tokens.map(function(v,i){return{id:i,val:v};}));
+  if(q.hint){var h=document.createElement('div');h.className='scramble-hint';h.textContent='💡 '+q.hint;area.appendChild(h);}
+  var lbl1=document.createElement('div');lbl1.className='scramble-zone-label';lbl1.textContent=isLetters?'Ta réponse (clique pour retirer)':'Tes mots (clique pour retirer)';area.appendChild(lbl1);
+  var ansZone=document.createElement('div');ansZone.className='scramble-answer-zone';ansZone.id='scr-ans-zone';
+  var empty=document.createElement('span');empty.className='scramble-answer-zone-empty';empty.id='scr-empty';empty.textContent='Clique les tuiles ci-dessous →';ansZone.appendChild(empty);
+  area.appendChild(ansZone);
+  var lbl2=document.createElement('div');lbl2.className='scramble-zone-label';lbl2.textContent='Tuiles disponibles';area.appendChild(lbl2);
+  var pool=document.createElement('div');pool.className='scramble-pool';pool.id='scr-pool';
+  _scrTokens.forEach(function(t){
+    var tile=document.createElement('div');tile.className='scr-tile';tile.textContent=t.val;tile.id='scrtile-'+t.id;
+    (function(tok,tileEl){
+      tileEl.onclick=function(){
+        if(answered||tileEl.classList.contains('scr-placed'))return;
+        _scrUserAns.push(tok);tileEl.classList.add('scr-placed');
+        var emptyEl=document.getElementById('scr-empty');if(emptyEl)emptyEl.style.display='none';
+        addScrTileToAnswer(tok,ansZone,tileEl);
+      };
+    })(t,tile);
+    pool.appendChild(tile);
+  });
+  area.appendChild(pool);
+  var vbtn=document.createElement('button');vbtn.className='validate-btn';vbtn.textContent="✓ VALIDER L'ORDRE";
+  vbtn.onclick=function(){validateScramble(q,ansZone,isLetters);};
+  area.appendChild(vbtn);
+}
+function addScrTileToAnswer(tok,ansZone,srcTile){
+  var t=document.createElement('div');t.className='scr-tile scr-ans';t.textContent=tok.val;
+  t.onclick=function(){
+    if(answered)return;
+    var idx=_scrUserAns.findIndex(function(x){return x.id===tok.id;});
+    if(idx>-1)_scrUserAns.splice(idx,1);
+    ansZone.removeChild(t);srcTile.classList.remove('scr-placed');
+    if(ansZone.querySelectorAll('.scr-tile').length===0){
+      var emptyEl=document.getElementById('scr-empty');if(emptyEl)emptyEl.style.display='';
+    }
+  };
+  ansZone.appendChild(t);
+}
+function validateScramble(q,ansZone,isLetters){
+  if(answered)return;answered=true;clearInterval(timerInt);
+  var correct=q.word.toUpperCase();
+  var user=isLetters?_scrUserAns.map(function(t){return t.val;}).join(''):_scrUserAns.map(function(t){return t.val;}).join(' ');
+  var ok=(user===correct);
+  ansZone.className='scramble-answer-zone '+(ok?'ok-zone':'err-zone');
+  if(!ok){errors.push({q:q.q,yours:user||'(incomplet)',correct:q.word,x:q.x,orig:q,mech:'scramble'});}
+  resolveCommon(ok,q);
+}
+
 function startGame(){
   if(selMode==='flash'){startFlash();return;}
   if(selMode==='duel'){showScreen('duel-setup');return;}
@@ -2769,6 +3020,9 @@ function showQ(){
       case 'debug':  renderDebug(q,area);break;
       case 'word':   renderWord(q,area);break;
       case 'match':  renderMatch(q,area);break;
+      case 'type':    renderType(q,area);break;
+      case 'slider':  renderSlider(q,area);break;
+      case 'scramble': renderScramble(q,area);break;
       default:       renderQCM(q,area);
     }
   }
@@ -4519,6 +4773,7 @@ function showDynToast(msg,type){
 var currentUI = 'ui-arcade';
 
 function switchUI(ui){
+  playThemeChange();
   currentUI = ui;
   lsSet('tssr5_ui', ui);
   applyUI();
@@ -5432,279 +5687,589 @@ var RPG_QUESTIONS = {
 // sub_actions: sous-choix après laction principale
 // direct_resolve: résolution narrative sans question
 // =====================================================
+// =====================================================
+// 15 SCÉNARIOS RPG — VERSION ENRICHIE
+// Chaque action mène à des conséquences → nouvelles actions → résolution
+// Structure : action → conséquence/analyse → décision → résultat
+// =====================================================
+
+var RPG_SCENARIOS_V2 = [
+
+// ======= 1. WINRM / RSAT =======
+{
+  id:'winrm', title:'TICKET #4471', prio:'P2 — URGENT',
+  situation:'14h32. Un collègue ne peut pas administrer SRV-PROD depuis RSAT. Erreur : "Accès refusé — WinRM ne répond pas". Il doit effectuer une maintenance dans 30 minutes.',
+  actions:[
+    {id:'ping',label:'Tester la connectivité réseau vers SRV-PROD',type:'BONNE_PISTE',
+     consequence:'Le ping répond en 1ms. SRV-PROD est joignable. Le problème n\'est pas réseau — c\'est une configuration WinRM ou pare-feu.',
+     follow_up:'Le serveur répond. Tu dois maintenant comprendre pourquoi WinRM refuse la connexion malgré la connectivité.',
+     follow_up_actions:[
+       {id:'check_svc',label:'Vérifier l\'état du service WinRM (Get-Service WinRM)',type:'BONNE_PISTE',
+        consequence:'Le service WinRM est Stopped. Il a été désactivé lors d\'un audit sécurité la semaine dernière. Tu dois le démarrer et reconfigurer.',
+        question_id:'winrm_enable'},
+       {id:'check_fw',label:'Vérifier les règles de pare-feu Windows (port 5985)',type:'BONNE_PISTE',
+        consequence:'La règle autorisant le port 5985 est désactivée. WinRM tourne mais le pare-feu bloque les connexions entrantes.',
+        question_id:'winrm_port'},
+       {id:'check_listener',label:'Lister les listeners WinRM actifs',type:'NEUTRE',
+        consequence:'Aucun listener actif. Cela confirme que le service WinRM n\'est pas configuré sur SRV-PROD.'},
+     ]},
+    {id:'trusted',label:'Vérifier les TrustedHosts côté client',type:'BONNE_PISTE',
+     consequence:'La liste TrustedHosts est vide. En workgroup (sans domaine AD), le client doit déclarer SRV-PROD pour que l\'authentification NTLM fonctionne.',
+     follow_up:'TrustedHosts vide confirmé. Tu dois décider comment corriger.',
+     follow_up_actions:[
+       {id:'add_trusted',label:'Ajouter SRV-PROD avec Set-Item WSMan:\\localhost\\Client\\TrustedHosts',type:'BONNE_PISTE',
+        consequence:'La commande s\'exécute. Après avoir ouvert une nouvelle session, RSAT se connecte. Tu demandes à ton collègue de tester.',
+        question_id:'winrm_trustedhosts'},
+       {id:'add_all',label:'Mettre TrustedHosts à * (tous les hôtes)',type:'MAUVAISE_PISTE',malus:true,
+        consequence:'ERREUR DE SÉCURITÉ. Accepter tous les hôtes expose le poste à des connexions non vérifiées. Le RSSI te contacte.'},
+     ]},
+    {id:'restart',label:'Redémarrer SRV-PROD pour forcer une réinitialisation',type:'MAUVAISE_PISTE',malus:true,
+     consequence:'SRV-PROD est en production. 20 utilisateurs perdent leur connexion. Le chef reçoit une alerte et t\'appelle immédiatement.'},
+    {id:'creds',label:'Vérifier les identifiants utilisés par le collègue',type:'NEUTRE',
+     consequence:'Les identifiants sont valides — le compte admin local existe. Ce n\'est pas la cause.'},
+    {id:'psremoting',label:'Lancer Enable-PSRemoting -Force sur SRV-PROD (console locale)',type:'BONNE_PISTE',
+     consequence:'Tu accèdes directement à SRV-PROD. Enable-PSRemoting reconfigure tout en une commande : service, listeners, règles pare-feu.',
+     question_id:'winrm_enable'},
+  ],
+  resolution_ok:'WinRM opérationnel. Le collègue accède à RSAT. Ton chef : "Bien joué, la maintenance peut avoir lieu."',
+  resolution_fail:'Connexion toujours impossible. La maintenance est repoussée. Ton chef est mécontent.',
+},
+
+// ======= 2. DNS — panne site B =======
+{
+  id:'dns', title:'TICKET #3892', prio:'P1 — CRITIQUE',
+  situation:'Alerte 9h15. Tous les postes du site B ont perdu accès aux ressources réseau. Erreur : "Serveur DNS introuvable". Le DSI a appelé. 80 utilisateurs sont bloqués.',
+  actions:[
+    {id:'check_svc',label:'Vérifier l\'état du service DNS sur le serveur',type:'BONNE_PISTE',
+     consequence:'Le service DNS est Stopped. L\'heure d\'arrêt correspond à la mise à jour Windows automatique de 3h00 ce matin.',
+     follow_up:'Service arrêté identifié. Avant de le redémarrer, tu dois vérifier si les zones sont intègres.',
+     follow_up_actions:[
+       {id:'check_zones',label:'Vérifier l\'intégrité des zones DNS avant redémarrage',type:'BONNE_PISTE',
+        consequence:'Les zones semblent intègres. L\'enregistrement SOA a un numéro de série valide. Tu peux démarrer le service.',
+        question_id:'dns_service_restart'},
+       {id:'start_direct',label:'Démarrer le service DNS immédiatement sans vérification',type:'MAUVAISE_PISTE',malus:true,
+        consequence:'Le service démarre mais la zone SOA est corrompue — erreur de réplication. Le DNS répond mais avec des données incorrectes.'},
+       {id:'check_eventlog',label:'Consulter les journaux d\'événements DNS avant toute action',type:'BONNE_PISTE',
+        consequence:'Event ID 4013 : zones AD non chargées au démarrage. La mise à jour a modifié les dépendances. Tu sais exactement quoi corriger.',
+        question_id:'dns_soa'},
+     ]},
+    {id:'flush',label:'Vider le cache DNS sur les postes clients (ipconfig /flushdns)',type:'NEUTRE',
+     consequence:'Cache vidé sur plusieurs postes. Le problème persiste — ce n\'est pas un problème de cache local.'},
+    {id:'check_dc',label:'Vérifier si le contrôleur de domaine répond',type:'BONNE_PISTE',
+     consequence:'Le DC répond en LDAP mais les requêtes DNS timeout. Cela confirme que c\'est le service DNS, pas l\'AD en lui-même.',
+     follow_up:'DC opérationnel mais DNS mort. Le problème est isolé au service DNS.',
+     follow_up_actions:[
+       {id:'check_dns_dc',label:'Tester la résolution DNS depuis le DC lui-même',type:'BONNE_PISTE',
+        consequence:'Même le DC ne peut pas résoudre ses propres enregistrements. Le service DNS est bien la cause racine.',
+        question_id:'dns_service_restart'},
+       {id:'change_dns_alt',label:'Pointer les postes vers un DNS alternatif (secondaire ou externe)',type:'NEUTRE',
+        consequence:'Internet revient. Mais les ressources internes (partages, GPO) restent inaccessibles car le DNS interne n\'est pas rétabli.'},
+     ]},
+    {id:'pub_dns',label:'Changer les DNS des postes vers 8.8.8.8 en urgence',type:'MAUVAISE_PISTE',malus:true,
+     consequence:'Internet revient mais les ressources AD sont inaccessibles. Tu as modifié la config sans validation. Le DSI demande une explication.'},
+  ],
+  resolution_ok:'Service DNS redémarré, zones intègres. Réseau rétabli en 3 minutes. Le DSI : "Réaction rapide, impact limité."',
+  resolution_fail:'DNS en panne 45 minutes. Rapport d\'incident exigé. Ton chef prend note.',
+},
+
+// ======= 3. VLAN 20 inaccessible =======
+{
+  id:'vlan', title:'TICKET #5103', prio:'P2 — MOYEN',
+  situation:'Le département RH (VLAN 20) ne peut plus accéder au serveur de fichiers depuis ce matin. Les autres VLANs fonctionnent. La responsable RH te relance toutes les 10 minutes.',
+  actions:[
+    {id:'check_svi',label:'Vérifier l\'état de la SVI Vlan20 sur le switch L3',type:'BONNE_PISTE',
+     consequence:'L\'interface Vlan20 est en "down/down". Elle a probablement été désactivée manuellement. Tu es sur la bonne piste.',
+     follow_up:'SVI down trouvée. Tu dois comprendre pourquoi avant d\'agir.',
+     follow_up_actions:[
+       {id:'check_who',label:'Regarder l\'historique des commandes (show logging)',type:'BONNE_PISTE',
+        consequence:'Les logs montrent "Vlan20 shutdown" tapé hier à 23h12 par le compte "admin-maintenance". C\'était lors d\'un test qui n\'a pas été annulé.',
+        question_id:'vlan_svi'},
+       {id:'no_shutdown',label:'Faire un no shutdown sur Vlan20 directement',type:'BONNE_PISTE',
+        consequence:'La SVI passe en "up/up". Le VLAN 20 retrouve sa connectivité vers les autres VLANs.',
+        question_id:'vlan_svi'},
+       {id:'check_vlan_db',label:'Vérifier que le VLAN 20 existe bien dans la base (show vlan brief)',type:'BONNE_PISTE',
+        consequence:'Le VLAN 20 est actif dans la base et assigné aux bons ports. Le problème vient bien de la SVI.'},
+     ]},
+    {id:'check_routing',label:'Vérifier si ip routing est activé sur le switch L3',type:'BONNE_PISTE',
+     consequence:'"show run | include ip routing" ne retourne rien. La commande a été retirée lors d\'une "simplification" de config.',
+     follow_up:'ip routing absent. Sans lui, les SVIs ont des IPs mais le switch ne route pas.',
+     follow_up_actions:[
+       {id:'add_routing',label:'Activer ip routing en mode config global',type:'BONNE_PISTE',
+        consequence:'Tu tapes "ip routing". Le switch commence immédiatement à router entre les VLANs. Le VLAN 20 retrouve son accès.',
+        question_id:'vlan_ip_routing'},
+       {id:'check_ospf',label:'Vérifier si OSPF ou un protocole de routage était actif',type:'NEUTRE',
+        consequence:'Aucun protocole de routage dynamique. Le routage était statique via ip routing. Confirme le diagnostic.'},
+     ]},
+    {id:'check_trunk',label:'Vérifier la configuration du port trunk inter-switches',type:'BONNE_PISTE',
+     consequence:'Le VLAN 20 n\'est plus dans la liste autorisée sur le trunk. Il a été retiré lors d\'un "nettoyage" récent.',
+     follow_up:'VLAN 20 absent du trunk. Tu dois le rajouter.',
+     follow_up_actions:[
+       {id:'add_vlan_trunk',label:'Ajouter le VLAN 20 avec switchport trunk allowed vlan add 20',type:'BONNE_PISTE',
+        consequence:'Le VLAN 20 est maintenant autorisé sur le trunk. Le trafic passe. La responsable RH confirme l\'accès.',
+        question_id:'vlan_trunk'},
+       {id:'replace_trunk',label:'Utiliser switchport trunk allowed vlan 20 (sans add)',type:'MAUVAISE_PISTE',malus:true,
+        consequence:'ERREUR. Sans le mot "add", tous les autres VLANs sont supprimés du trunk. Panne généralisée.'},
+     ]},
+    {id:'restart_sw',label:'Redémarrer le switch RH',type:'MAUVAISE_PISTE',malus:true,
+     consequence:'Tous les postes RH perdent la connexion pendant 3 minutes. Le problème n\'est pas résolu.'},
+    {id:'check_acl',label:'Vérifier les ACL appliquées sur les interfaces VLAN',type:'NEUTRE',
+     consequence:'Aucune ACL suspecte. Le problème est ailleurs.'},
+  ],
+  resolution_ok:'VLAN 20 opérationnel. Les RH accèdent au serveur de fichiers. Ton chef : "Bon diagnostic, cause trouvée."',
+  resolution_fail:'VLAN 20 coupé 1h. Rapport d\'impact demandé.',
+},
+
+// ======= 4. HYPER-V VM ne démarre pas =======
+{
+  id:'hyperv', title:'TICKET #2267', prio:'P2 — URGENT',
+  situation:'Un développeur ne peut plus démarrer sa VM de test. Erreur : "Disque non trouvé". Il a une démo dans 2 heures. La VM contient 3 mois de développement.',
+  actions:[
+    {id:'open_hv',label:'Ouvrir le Gestionnaire Hyper-V et inspecter la configuration',type:'BONNE_PISTE',
+     consequence:'Dans Paramètres → Contrôleur SCSI → Disque dur, le chemin pointe vers D:\\VMs\\Dev-VM.vhdx mais ce dossier n\'existe pas.',
+     follow_up:'Chemin incorrect trouvé. Tu dois comprendre ce qui s\'est passé avant de corriger.',
+     follow_up_actions:[
+       {id:'find_vhdx',label:'Chercher le fichier VHDX avec Explorer (tous les disques)',type:'BONNE_PISTE',
+        consequence:'Le fichier est sur E:\\VMs\\Dev-VM.vhdx. Il a été déplacé lors d\'une migration de disque sans mise à jour de la config VM.',
+        question_id:'hyperv_disk_path'},
+       {id:'check_snapshots',label:'Vérifier la chaîne de snapshots dans le Gestionnaire',type:'BONNE_PISTE',
+        consequence:'Tu vois 4 snapshots enchaînés. L\'un d\'eux (.avhdx) pointe vers un chemin différent qui n\'existe plus. C\'est la cause.',
+        question_id:'hyperv_snapshot'},
+       {id:'check_events',label:'Consulter les journaux d\'événements Hyper-V',type:'BONNE_PISTE',
+        consequence:'Event 12220 : "Cannot open attachment [...] The system cannot find the file specified." Chemin : D:\\VMs\\Dev-VM.avhdx.'},
+     ]},
+    {id:'snapshot',label:'Chercher un snapshot valide et restaurer',type:'BONNE_PISTE',
+     consequence:'Tu trouves un snapshot d\'hier 18h. En le restaurant, la VM retrouve un état cohérent avec tous les fichiers accessibles.',
+     direct_resolve:true},
+    {id:'recreate',label:'Recréer la VM depuis zéro rapidement',type:'MAUVAISE_PISTE',malus:true,
+     consequence:'ERREUR CRITIQUE. 3 mois de travail perdus. Le développeur est catastrophé. Ton chef est furieux.'},
+    {id:'check_switch',label:'Vérifier le commutateur réseau virtuel',type:'NEUTRE',
+     consequence:'Le commutateur est bien configuré. Le problème de démarrage n\'est pas lié au réseau.'},
+    {id:'export_vm',label:'Tenter un export de la VM pour récupérer les données',type:'NEUTRE',
+     consequence:'L\'export nécessite que la VM soit accessible. Impossible dans l\'état actuel.'},
+  ],
+  resolution_ok:'VM démarrée, démo réussie. Ton chef : "Bien géré, impact minimal."',
+  resolution_fail:'VM inaccessible. Démo annulée. Rapport d\'incident demandé.',
+},
+
+// ======= 5. NTFS — accès refusé =======
+{
+  id:'ntfs', title:'TICKET #6814', prio:'P1 — URGENT',
+  situation:'La responsable RH ne peut plus accéder au dossier \\\\SRV-FILE\\Confidentiel-RH depuis ce matin. "Accès refusé". Ses collègues y accèdent normalement.',
+  actions:[
+    {id:'check_ntfs',label:'Inspecter les permissions NTFS du dossier (onglet Sécurité)',type:'BONNE_PISTE',
+     consequence:'Tu vois une entrée "Deny - Tous les droits" sur le compte de la responsable, ajoutée hier à 22h. Un Deny explicite prime sur tous les Allow.',
+     follow_up:'Deny explicite trouvé. Tu dois identifier pourquoi et décider comment corriger.',
+     follow_up_actions:[
+       {id:'remove_deny',label:'Supprimer l\'entrée Deny directement',type:'BONNE_PISTE',
+        consequence:'L\'entrée Deny est supprimée. La responsable peut maintenant accéder au dossier. Ses droits Allow via GRP-RH s\'appliquent normalement.',
+        question_id:'ntfs_deny'},
+       {id:'check_inheritance',label:'Vérifier si l\'héritage NTFS est actif sur ce dossier',type:'BONNE_PISTE',
+        consequence:'L\'héritage est coupé et les ACL ont été reconstruites manuellement. Le Deny a été ajouté par erreur lors de cette reconstruction.'},
+       {id:'reset_permissions',label:'Réinitialiser toutes les permissions et tout reconfigurer',type:'MAUVAISE_PISTE',malus:true,
+        consequence:'Tu effaces toutes les ACL du dossier. Personne ne peut plus y accéder. Il faut tout reconfigurer depuis zéro.'},
+     ]},
+    {id:'check_groups',label:'Vérifier les groupes AD de la responsable',type:'BONNE_PISTE',
+     consequence:'Elle est dans GRP-RH (Allow) mais aussi dans GRP-STAGIAIRES (Deny sur ce dossier). Le Deny de GRP-STAGIAIRES prime.',
+     follow_up:'Appartenance erronée à GRP-STAGIAIRES trouvée.',
+     follow_up_actions:[
+       {id:'remove_group',label:'Retirer du groupe GRP-STAGIAIRES dans l\'AD',type:'BONNE_PISTE',
+        consequence:'Après déconnexion/reconnexion, les nouveaux tokens Kerberos s\'appliquent. L\'accès est rétabli.',
+        question_id:'ntfs_group_deny'},
+       {id:'check_why_added',label:'Comprendre pourquoi elle a été ajoutée à GRP-STAGIAIRES',type:'NEUTRE',
+        consequence:'Un script de migration a mal classé son compte lors d\'une réorganisation des OU la semaine dernière.'},
+     ]},
+    {id:'reset_pwd',label:'Réinitialiser son mot de passe (pour forcer une reconnexion)',type:'MAUVAISE_PISTE',malus:true,
+     consequence:'Son mot de passe change mais le problème NTFS persiste. Elle doit reconfigurer ses applications.'},
+    {id:'check_share',label:'Vérifier les permissions de partage SMB',type:'NEUTRE',
+     consequence:'Les permissions de partage sont "Everyone - Contrôle total". Le problème vient bien des NTFS.'},
+  ],
+  resolution_ok:'Accès rétabli. La responsable peut travailler. Ton chef : "Bien diagnostiqué, cause subtile."',
+  resolution_fail:'Accès refusé toute la journée. Le DRH escalade.',
+},
+
+// ======= 6. STP — boucle réseau =======
+{
+  id:'stp', title:'TICKET #1190', prio:'P3 — CRITIQUE',
+  situation:'ALERTE. Le réseau du bâtiment B sature. Tous les switches ont des indicateurs de trafic à 100%. Personne ne peut travailler. Le DSI est sur place et attend ta réponse.',
+  actions:[
+    {id:'show_stp',label:'Analyser l\'arbre STP (show spanning-tree) sur le switch core',type:'BONNE_PISTE',
+     consequence:'show spanning-tree montre un port en Forwarding qui devrait être Blocking. Un switch non managé crée une boucle L2.',
+     follow_up:'Boucle STP identifiée sur le port Gi0/2. Tu dois l\'isoler immédiatement.',
+     follow_up_actions:[
+       {id:'shutdown_port',label:'Couper le port incriminé (shutdown) immédiatement',type:'BONNE_PISTE',
+        consequence:'Le port est coupé. La tempête de broadcast s\'arrête en 2 secondes. Le réseau se stabilise. Le DSI voit les indicateurs baisser.',
+        question_id:'stp_bpduguard'},
+       {id:'trace_cable',label:'Tracer le câble du port pour identifier l\'équipement non autorisé',type:'BONNE_PISTE',
+        consequence:'Un stagiaire a branché un switch TP-Link personnel pour avoir plus de prises dans son bureau. C\'est lui qui a créé la boucle.'},
+       {id:'restart_switches',label:'Redémarrer tous les switches du bâtiment',type:'MAUVAISE_PISTE',malus:true,
+        consequence:'Redémarrage en cascade. 5 minutes de coupure complète. La boucle revient au démarrage car la cause n\'est pas traitée.'},
+     ]},
+    {id:'shutdown_direct',label:'Couper le port suspect identifié visuellement (LED orange)',type:'BONNE_PISTE',
+     consequence:'Tu coupes le bon port. La tempête de broadcast cesse immédiatement. Réseau stabilisé.',
+     question_id:'stp_portfast'},
+    {id:'check_root',label:'Identifier le Root Bridge actuel (show spanning-tree)',type:'NEUTRE',
+     consequence:'Le Root Bridge est le switch core attendu. L\'arbre STP est bien construit, mais la boucle physique le court-circuite.'},
+    {id:'enable_portfast',label:'Activer PortFast sur tous les ports access',type:'MAUVAISE_PISTE',malus:true,
+     consequence:'PortFast sur un port trunk aggrave la situation. Des BPDUs sont ignorées et de nouvelles boucles apparaissent.'},
+    {id:'check_cdp',label:'Utiliser CDP pour cartographier les connexions (show cdp neighbors)',type:'BONNE_PISTE',
+     consequence:'CDP ne voit pas le switch non managé (il ne parle pas CDP). Mais tu identifies le port par élimination.',
+     follow_up:'Port suspect isolé par CDP. Tu dois maintenant agir.',
+     follow_up_actions:[
+       {id:'shutdown_suspect',label:'Couper le port suspect identifié',type:'BONNE_PISTE',
+        consequence:'Port coupé. Boucle stoppée. Réseau stabilisé en quelques secondes.',
+        question_id:'stp_bpduguard'},
+       {id:'check_again',label:'Relancer show spanning-tree pour confirmer',type:'NEUTRE',
+        consequence:'La topologie STP est maintenant cohérente. Tous les ports sont en Forwarding ou Blocking normalement.'},
+     ]},
+  ],
+  resolution_ok:'Boucle stoppée en 3 minutes. Réseau stabilisé. Le DSI : "Bonne réactivité en situation de crise."',
+  resolution_fail:'Boucle active 15+ minutes. Rapport de post-mortem exigé. Impact total bâtiment B.',
+},
+
+// ======= 7. DHCP épuisé =======
+{
+  id:'dhcp', title:'TICKET #7723', prio:'P2 — URGENT',
+  situation:'Lundi matin, 12 postes du service compta affichent 169.254.x.x et ne peuvent pas accéder au réseau. Plusieurs nouveaux stagiaires sont arrivés ce matin.',
+  actions:[
+    {id:'check_scope',label:'Vérifier l\'état du scope DHCP dans la console',type:'BONNE_PISTE',
+     consequence:'Scope 192.168.1.100-200 : 100 baux sur 100 — pool épuisé. Des baux obsolètes d\'anciens postes occupent 30% de l\'espace.',
+     follow_up:'Pool épuisé confirmé. Deux solutions possibles : libérer des baux ou étendre le pool.',
+     follow_up_actions:[
+       {id:'purge_stale',label:'Identifier et supprimer les baux obsolètes (MACs inexistants)',type:'BONNE_PISTE',
+        consequence:'23 baux d\'anciens postes supprimés. 23 adresses libérées. Les 12 postes obtiennent leurs adresses en quelques secondes.',
+        question_id:'dhcp_lease'},
+       {id:'extend_scope',label:'Étendre le scope de /24 à plus d\'adresses',type:'BONNE_PISTE',
+        consequence:'Tu étends le scope à 192.168.1.100-250. 50 adresses supplémentaires disponibles. Les postes obtiennent leurs IPs.',
+        question_id:'dhcp_scope'},
+       {id:'restart_dhcp',label:'Redémarrer le service DHCP pour libérer les baux',type:'MAUVAISE_PISTE',malus:true,
+        consequence:'Le redémarrage ne libère pas les baux persistants. Les 12 postes restent en 169.254.x.x.'},
+     ]},
+    {id:'check_svc',label:'Vérifier si le service DHCP est bien démarré',type:'NEUTRE',
+     consequence:'Le service est actif et distribue. Le problème vient de l\'épuisement du pool, pas du service.'},
+    {id:'ipconfig',label:'Faire un ipconfig /renew sur les postes en 169.254',type:'NEUTRE',
+     consequence:'Les postes tentent de renouveler. Ils obtiennent "Impossible de contacter le serveur DHCP" — le pool est épuisé.'},
+    {id:'static',label:'Configurer des IPs statiques sur les 12 postes',type:'MAUVAISE_PISTE',malus:true,
+     consequence:'Solution temporaire non documentée. Dans 2 semaines tu as 12 postes en statique et personne ne sait pourquoi.'},
+    {id:'check_relay',label:'Vérifier si le relay agent fonctionne (autre sous-réseau)',type:'BONNE_PISTE',
+     consequence:'Le relay agent est opérationnel. Les postes reçoivent bien les requêtes DHCP. Le problème est le pool épuisé.',
+     follow_up:'Relay OK mais pool vide. Il faut libérer des adresses.',
+     follow_up_actions:[
+       {id:'purge_relay',label:'Supprimer les baux obsolètes pour libérer des adresses',type:'BONNE_PISTE',
+        consequence:'Baux obsolètes supprimés. Adresses libérées. Les postes obtiennent leurs IPs.',
+        question_id:'dhcp_lease'},
+     ]},
+  ],
+  resolution_ok:'Pool libéré. Les 12 postes ont leur IP. Ton chef : "Bien vu, les baux fantômes."',
+  resolution_fail:'Compta sans réseau jusqu\'à 14h. Rapport de cause demandé.',
+},
+
+// ======= 8. SSH Cisco =======
+{
+  id:'cisco_ssh', title:'TICKET #9001', prio:'P2 — MOYEN',
+  situation:'L\'admin réseau ne peut plus se connecter en SSH au routeur R-CORE. La connexion Telnet fonctionne encore mais le chef veut Telnet désactivé d\'urgence pour l\'audit.',
+  actions:[
+    {id:'check_rsa',label:'Vérifier si les clés RSA existent (show crypto key mypubkey rsa)',type:'BONNE_PISTE',
+     consequence:'Aucune clé RSA. Elles ont été supprimées lors d\'un "crypto zeroize" pendant une remise à zéro partielle.',
+     follow_up:'Clés RSA absentes. Tu dois les régénérer dans le bon ordre.',
+     follow_up_actions:[
+       {id:'check_prereqs',label:'Vérifier le hostname et ip domain-name avant génération',type:'BONNE_PISTE',
+        consequence:'"show run | include domain" ne retourne rien. Sans ip domain-name, la génération des clés échoue.',
+        question_id:'cisco_ssh_domain'},
+       {id:'gen_rsa_direct',label:'Lancer crypto key generate rsa modulus 2048 directement',type:'MAUVAISE_PISTE',malus:true,
+        consequence:'"% You must specify a key name using the \'label\' keyword". Sans domaine configuré, Cisco ne peut pas nommer la clé.'},
+       {id:'full_sequence',label:'Configurer hostname, domain-name puis générer les clés',type:'BONNE_PISTE',
+        consequence:'La séquence complète réussit. Les clés RSA 2048 bits sont générées. SSH v2 peut être activé.',
+        question_id:'cisco_ssh_rsa'},
+     ]},
+    {id:'check_vty',label:'Inspecter la configuration des lignes VTY',type:'BONNE_PISTE',
+     consequence:'"transport input ssh" est bien configuré. Mais en regardant attentivement, une ligne "transport input telnet" a été ajoutée après — elle écrase la première.',
+     follow_up:'VTY mal configurée. Il faut corriger.',
+     follow_up_actions:[
+       {id:'fix_vty',label:'Reconfigurer les VTY correctement (transport input ssh)',type:'BONNE_PISTE',
+        consequence:'Les lignes VTY n\'acceptent plus que SSH. Telnet est bloqué. L\'audit peut se poursuivre.',
+        question_id:'cisco_ssh_vty'},
+       {id:'check_version',label:'Verifier la version SSH',type:'NEUTRE',
+        consequence:'SSHv1 par defaut, moins securise. Configurer ip ssh version 2 est recommande.'},
+     ]},
+    {id:'check_acl',label:'Vérifier si une ACL bloque le port 22 entrant',type:'BONNE_PISTE',
+     consequence:'Une ACL appliquée à l\'interface de management bloque TCP port 22. Elle a été créée trop restrictive lors de l\'audit.',
+     follow_up:'ACL trop restrictive trouvée.',
+     follow_up_actions:[
+       {id:'fix_acl',label:'Modifier l\'ACL pour autoriser SSH depuis le réseau admin',type:'BONNE_PISTE',
+        consequence:'Après modification, SSH fonctionne depuis le poste de l\'admin. Telnet est bien bloqué.',
+        question_id:'cisco_acl'},
+       {id:'delete_acl',label:'Supprimer complètement l\'ACL de management',type:'MAUVAISE_PISTE',malus:true,
+        consequence:'SSH fonctionne mais le routeur est maintenant accessible depuis n\'importe quelle IP. Mauvaise pratique sécurité.'},
+     ]},
+    {id:'check_domain',label:'Vérifier ip domain-name (requis pour SSH)',type:'BONNE_PISTE',
+     consequence:'"show run | include domain" ne retourne rien. Sans ip domain-name les clés RSA ne peuvent pas être générées.',
+     question_id:'cisco_ssh_domain'},
+    {id:'reinstall_ios',label:'Réinstaller l\'IOS du routeur',type:'MAUVAISE_PISTE',malus:true,
+     consequence:'Procédure lourde, fenêtre de maintenance requise. Ton chef demande pourquoi tu escalades sans diagnostic complet.'},
+  ],
+  resolution_ok:'SSH opérationnel, Telnet désactivé. Ton chef : "Parfait pour l\'audit."',
+  resolution_fail:'SSH toujours KO. Telnet reste actif. Audit compromis.',
+},
+
+// ======= 9. Compte AD bloqué =======
+{
+  id:'ad_locked', title:'TICKET #3314', prio:'P1 — URGENT',
+  situation:'Un commercial ne peut plus se connecter. "Compte désactivé ou expiré". Il a un rendez-vous client dans 20 minutes. Son manager appelle directement.',
+  actions:[
+    {id:'check_account',label:'Vérifier l\'état du compte dans ADUC',type:'BONNE_PISTE',
+     consequence:'Le compte est désactivé ET verrouillé. Deux problèmes distincts. La désactivation est manuelle (hier 22h), le verrouillage est dû à 5 tentatives échouées ce matin.',
+     follow_up:'Compte désactivé ET verrouillé. Il faut traiter les deux.',
+     follow_up_actions:[
+       {id:'enable_and_unlock',label:'Réactiver ET déverrouiller le compte',type:'BONNE_PISTE',
+        consequence:'Enable-ADAccount + Unlock-ADAccount. Le commercial peut se connecter juste avant son rendez-vous.',
+        question_id:'ad_enable_account'},
+       {id:'only_unlock',label:'Déverrouiller sans réactiver',type:'MAUVAISE_PISTE',malus:true,
+        consequence:'Unlock-ADAccount exécuté mais le compte reste désactivé. Le commercial ne peut toujours pas se connecter.'},
+       {id:'check_why_disabled',label:'Comprendre pourquoi il a été désactivé',type:'BONNE_PISTE',
+        consequence:'Un script de départ a désactivé son compte par erreur — son nom ressemble à celui d\'un employé qui a quitté l\'entreprise.'},
+     ]},
+    {id:'check_lockout',label:'Vérifier les lockouts avec Account Lockout Status tool',type:'BONNE_PISTE',
+     consequence:'5 tentatives échouées depuis son poste à 8h01. Le compte est verrouillé sur 2 DC. Quelqu\'un a essayé de se connecter avec le mauvais mot de passe.',
+     follow_up:'Lockout identifié sur 2 DCs. Tu dois déverrouiller.',
+     follow_up_actions:[
+       {id:'unlock_dc',label:'Déverrouiller sur tous les DCs (Unlock-ADAccount)',type:'BONNE_PISTE',
+        consequence:'Le compte est déverrouillé. Il peut maintenant se connecter si le compte est aussi réactivé.',
+        question_id:'ad_unlock'},
+       {id:'force_pwd',label:'Forcer un changement de mot de passe',type:'NEUTRE',
+        consequence:'Utile pour la sécurité mais ne résout pas le problème immédiat. Le compte doit aussi être réactivé.'},
+     ]},
+    {id:'reset_pwd_ad',label:'Réinitialiser son mot de passe dans l\'AD',type:'NEUTRE',
+     consequence:'Le mot de passe est changé mais le compte reste désactivé. Le problème n\'est pas résolu.'},
+    {id:'restart_dc',label:'Redémarrer le contrôleur de domaine',type:'MAUVAISE_PISTE',malus:true,
+     consequence:'ERREUR CRITIQUE. Redémarrer un DC coupe l\'authentification pour tout le domaine. Ton chef reçoit 30 appels.'},
+  ],
+  resolution_ok:'Compte réactivé et déverrouillé. Rendez-vous sauvé. Ton chef : "Réactivité parfaite."',
+  resolution_fail:'Commercial bloqué. Rendez-vous client manqué. Perte commerciale signalée.',
+},
+
+// ======= 10. GPO non appliquée =======
+{
+  id:'gpo', title:'TICKET #5521', prio:'P2 — MOYEN',
+  situation:'Une GPO de sécurité (désactivation USB) ne s\'applique pas sur les postes compta. Les clés USB fonctionnent encore. Le RSSI veut une résolution avant l\'audit de 16h.',
+  actions:[
+    {id:'gpupdate',label:'Forcer gpupdate /force sur les postes compta',type:'BONNE_PISTE',
+     consequence:'gpupdate s\'exécute mais la GPO n\'apparaît toujours pas dans gpresult. Le problème est structurel, pas de délai.',
+     follow_up:'gpupdate ne suffit pas. Tu dois identifier pourquoi la GPO ne descend pas.',
+     follow_up_actions:[
+       {id:'gpresult',label:'Lancer gpresult /r /scope computer pour analyser',type:'BONNE_PISTE',
+        consequence:'gpresult montre que les GPO du niveau domaine s\'appliquent mais pas celles de l\'OU parent "Informatique". Les postes compta sont dans une OU différente.',
+        question_id:'gpo_gpresult'},
+       {id:'check_link',label:'Vérifier le lien de la GPO dans la GPMC',type:'BONNE_PISTE',
+        consequence:'La GPO est liée à OU=Informatique. Les postes compta sont dans OU=Comptabilité. La GPO ne les atteint pas.',
+        question_id:'gpo_link'},
+     ]},
+    {id:'check_link_gpo',label:'Vérifier où la GPO est liée dans la GPMC',type:'BONNE_PISTE',
+     consequence:'La GPO est liée à OU=Informatique, pas à OU=Comptabilité. Erreur de configuration initiale.',
+     follow_up:'Mauvais lien trouvé. Tu dois décider de la correction.',
+     follow_up_actions:[
+       {id:'relink',label:'Créer un nouveau lien vers OU=Comptabilité',type:'BONNE_PISTE',
+        consequence:'Lien créé. Après gpupdate /force, la GPO s\'applique. Les clés USB sont bloquées.',
+        question_id:'gpo_link'},
+       {id:'check_inheritance',label:'Vérifier si Block Inheritance est activé sur l\'OU Compta',type:'BONNE_PISTE',
+        consequence:'L\'OU Comptabilité a "Block Policy Inheritance" activé — les GPO parentes ne descendent pas même si correctement liées.',
+        question_id:'gpo_inheritance'},
+     ]},
+    {id:'check_wmi',label:'Vérifier si un filtre WMI conditionne la GPO',type:'BONNE_PISTE',
+     consequence:'Un filtre WMI limite la GPO aux postes Windows 11. Les postes compta sont sous Windows 10 — ils sont exclus.',
+     follow_up:'Filtre WMI trop restrictif.',
+     follow_up_actions:[
+       {id:'fix_wmi',label:'Modifier ou supprimer le filtre WMI',type:'BONNE_PISTE',
+        consequence:'Filtre supprimé. La GPO s\'applique maintenant à tous les systèmes Windows.',
+        question_id:'gpo_wmi'},
+     ]},
+    {id:'delete_gpo',label:'Supprimer et recréer la GPO',type:'MAUVAISE_PISTE',malus:true,
+     consequence:'La GPO est supprimée. Elle ne s\'applique plus nulle part. Le RSSI est alerté.'},
+  ],
+  resolution_ok:'GPO appliquée. Clés USB bloquées en compta. Le RSSI : "Juste à temps pour l\'audit."',
+  resolution_fail:'GPO non appliquée. Audit de sécurité compromis.',
+},
+
+// ======= 11. Certificat SSL expiré =======
+{
+  id:'ssl', title:'TICKET #7788', prio:'P2 — URGENT',
+  situation:'L\'intranet RH affiche "CONNEXION NON SÉCURISÉE" depuis ce matin. Les navigateurs bloquent l\'accès. 200 employés ne peuvent plus accéder aux outils RH en ligne.',
+  actions:[
+    {id:'check_cert',label:'Vérifier le certificat SSL dans le navigateur (F12)',type:'BONNE_PISTE',
+     consequence:'Le certificat a expiré hier à 23h59. Il avait été émis il y a 2 ans. Aucune alerte d\'expiration n\'était configurée.',
+     follow_up:'Expiration confirmée. Tu dois renouveler sans couper le service.',
+     follow_up_actions:[
+       {id:'check_ca',label:'Identifier l\'autorité de certification émettrice',type:'BONNE_PISTE',
+        consequence:'C\'est un certificat Let\'s Encrypt (gratuit). Le renouvellement automatique Certbot a échoué car un port était fermé.',
+        question_id:'ssl_renew'},
+       {id:'check_iis_binding',label:'Vérifier les bindings HTTPS dans IIS',type:'BONNE_PISTE',
+        consequence:'Le binding HTTPS pointe encore sur l\'ancien certificat expiré. Tu devras le mettre à jour après renouvellement.'},
+       {id:'create_self_signed',label:'Créer un certificat auto-signé temporaire',type:'MAUVAISE_PISTE',malus:true,
+        consequence:'Les navigateurs affichent toujours un avertissement. Les utilisateurs doivent ajouter des exceptions. Mauvaise habitude de sécurité.'},
+     ]},
+    {id:'check_iis',label:'Vérifier la configuration IIS du site',type:'NEUTRE',
+     consequence:'IIS est bien configuré, le site fonctionne. Le problème vient uniquement du certificat.'},
+    {id:'exception',label:'Demander aux utilisateurs d\'ajouter des exceptions navigateur',type:'MAUVAISE_PISTE',malus:true,
+     consequence:'Mauvaise pratique. Le RSSI te contacte pour signaler que tu habitues les employés à ignorer les alertes SSL.'},
+    {id:'check_chain',label:'Vérifier la chaîne de certification (CA intermédiaire)',type:'BONNE_PISTE',
+     consequence:'La chaîne est complète et valide. Le problème est uniquement l\'expiration du certificat feuille.',
+     direct_resolve:true},
+  ],
+  resolution_ok:'Certificat renouvelé et installé. Intranet accessible. Ton chef : "Configure une alerte pour la prochaine fois."',
+  resolution_fail:'Intranet inaccessible 4h. Rapport d\'incident et plan de renouvellement automatique exigés.',
+},
+
+// ======= 12. Route manquante =======
+{
+  id:'routing', title:'TICKET #2098', prio:'P3 — CRITIQUE',
+  situation:'Le site secondaire (192.168.2.0/24) ne communique plus avec le siège depuis une intervention hier soir. Les sauvegardes nocturnes ont échoué. Le DSI veut une résolution immédiate.',
+  actions:[
+    {id:'check_routes',label:'Vérifier la table de routage sur R1 (show ip route)',type:'BONNE_PISTE',
+     consequence:'Aucune route vers 192.168.2.0/24. Elle a été supprimée lors de l\'intervention. La route vers 192.168.3.0/24 est aussi absente.',
+     follow_up:'Routes manquantes identifiées. Tu dois les reconfigurer correctement.',
+     follow_up_actions:[
+       {id:'add_routes',label:'Ajouter les routes statiques manquantes',type:'BONNE_PISTE',
+        consequence:'Les deux routes ajoutées. La communication inter-sites reprend. Les sauvegardes nocturnes de ce soir passeront.',
+        question_id:'routing_static'},
+       {id:'check_startup',label:'Comparer running-config et startup-config',type:'BONNE_PISTE',
+        consequence:'La startup-config a les routes mais pas la running. L\'intervenant a oublié de faire "copy run start" après ses modifications.'},
+       {id:'reload_config',label:'Charger la startup-config (reload)',type:'MAUVAISE_PISTE',malus:true,
+        consequence:'Le reload coupe le routeur 3 minutes et charge une startup-config incomplète. La situation empire.'},
+     ]},
+    {id:'ping_sites',label:'Tester la connectivité par pings progressifs (sites, routeurs)',type:'NEUTRE',
+     consequence:'Ping vers 192.168.2.1 échoue depuis R1. Le problème est bien le routage sur R1, pas une panne physique.'},
+    {id:'check_interfaces',label:'Vérifier l\'état des interfaces du routeur',type:'BONNE_PISTE',
+     consequence:'Toutes les interfaces sont "up/up". Le problème est logiciel (table de routage), pas physique.',
+     direct_resolve:true},
+    {id:'check_acl_r',label:'Vérifier les ACL sur les interfaces du routeur',type:'BONNE_PISTE',
+     consequence:'Les ACL n\'ont pas été modifiées. Elles ne bloquent pas le trafic inter-sites.',
+     direct_resolve:true},
+  ],
+  resolution_ok:'Routes ajoutées. Communication rétablie. Sauvegardes OK. Ton chef : "Bien vu, rapide."',
+  resolution_fail:'Communication coupée 6h supplémentaires. Sauvegardes J+1 aussi perdues.',
+},
+
+// ======= 13. Imprimante réseau =======
+{
+  id:'printer', title:'TICKET #4456', prio:'P1 — MOYEN',
+  situation:'L\'imprimante réseau du plateau commercial (IP: 192.168.1.50) est inaccessible depuis ce matin. 15 commerciaux ne peuvent pas imprimer leurs contrats pour les rendez-vous du jour.',
+  actions:[
+    {id:'ping_printer',label:'Pinger l\'adresse IP de l\'imprimante',type:'BONNE_PISTE',
+     consequence:'Ping timeout. L\'imprimante ne répond pas sur 192.168.1.50. Elle a soit changé d\'IP, soit est éteinte.',
+     follow_up:'Pas de réponse sur l\'IP connue. Tu dois trouver la nouvelle IP ou vérifier l\'état physique.',
+     follow_up_actions:[
+       {id:'check_dhcp_leases',label:'Chercher le bail DHCP de l\'imprimante par son adresse MAC',type:'BONNE_PISTE',
+        consequence:'Le bail DHCP montre que l\'imprimante a obtenu 192.168.1.87 suite au redémarrage du serveur DHCP hier. L\'IP a changé.',
+        question_id:'printer_ip'},
+       {id:'check_physical',label:'Vérifier physiquement si l\'imprimante est allumée',type:'BONNE_PISTE',
+        consequence:'L\'imprimante est allumée et affiche une IP différente sur son écran : 192.168.1.87. Elle était en DHCP.'},
+       {id:'scan_network',label:'Scanner le réseau pour trouver l\'imprimante (nmap ou Advanced IP Scanner)',type:'BONNE_PISTE',
+        consequence:'L\'imprimante est détectée sur 192.168.1.87. Son adresse MAC confirme que c\'est bien la bonne imprimante.'},
+     ]},
+    {id:'check_spooler',label:'Vérifier le spouleur d\'impression sur les postes',type:'NEUTRE',
+     consequence:'Le spouleur est actif. Le problème n\'est pas logiciel côté poste — c\'est l\'imprimante qui est injoignable.'},
+    {id:'reinstall',label:'Réinstaller les pilotes d\'impression sur tous les postes',type:'MAUVAISE_PISTE',malus:true,
+     consequence:'45 minutes sur 15 postes. L\'imprimante reste inaccessible car le vrai problème (IP changée) n\'est pas traité.'},
+    {id:'check_switch_port',label:'Vérifier le port switch de l\'imprimante (show int)',type:'NEUTRE',
+     consequence:'Le port switch est "up/up". La connexion physique est bonne. Le problème est l\'adresse IP.'},
+    {id:'fix_ip',label:'Configurer une IP statique sur l\'imprimante',type:'BONNE_PISTE',
+     consequence:'Via l\'interface web de l\'imprimante, tu configures 192.168.1.50 en statique. Tous les postes retrouvent l\'imprimante.',
+     follow_up:'IP statique configurée. Il faut maintenant mettre à jour les postes.',
+     follow_up_actions:[
+       {id:'update_ports',label:'Mettre à jour le port d\'impression sur les postes',type:'BONNE_PISTE',
+        consequence:'Les ports sont mis à jour. L\'impression fonctionne sur tous les postes.',
+        question_id:'printer_static'},
+       {id:'reservation',label:'Créer une réservation DHCP pour éviter le problème futur',type:'BONNE_PISTE',
+        consequence:'Réservation DHCP créée. L\'imprimante aura toujours 192.168.1.50, même en DHCP.'},
+     ]},
+  ],
+  resolution_ok:'Impression rétablie. Commerciaux opérationnels. Ton chef : "Bien diagnostiqué."',
+  resolution_fail:'Sans impression pendant 2h. Contrats signés à la main. Manager RH mécontent.',
+},
+
+// ======= 14. Espace NAS saturé =======
+{
+  id:'backup', title:'TICKET #6670', prio:'P2 — MOYEN',
+  situation:'L\'alerte supervision signale l\'échec des sauvegardes nocturnes. Motif : "Espace insuffisant sur le NAS". Le NAS affiche 100% utilisé.',
+  actions:[
+    {id:'check_nas',label:'Analyser l\'occupation par dossier sur le NAS',type:'BONNE_PISTE',
+     consequence:'Tu identifies un dossier "VM-ARCHIVE-2023" de 800 Go qui correspond à une VM désaffectée il y a 3 mois. Jamais supprimé.',
+     follow_up:'800 Go de données obsolètes identifiées. Tu dois décider comment procéder.',
+     follow_up_actions:[
+       {id:'confirm_obsolete',label:'Confirmer la désaffectation de la VM avec le responsable',type:'BONNE_PISTE',
+        consequence:'Le DSI confirme par email que la VM peut être supprimée. Tu as le feu vert.',
+        question_id:'backup_retention'},
+       {id:'delete_direct',label:'Supprimer le dossier directement sans confirmation',type:'MAUVAISE_PISTE',malus:true,
+        consequence:'Le dossier est supprimé. 2h plus tard, un développeur cherche des données de la VM. Elles étaient encore utilisées.'},
+     ]},
+    {id:'check_policy',label:'Vérifier la politique de rétention configurée',type:'BONNE_PISTE',
+     consequence:'La politique dit "30 jours" mais le nettoyage automatique est désactivé. Les anciennes sauvegardes s\'accumulent sans jamais être supprimées.',
+     follow_up:'Politique mal appliquée. Il faut corriger la configuration.',
+     follow_up_actions:[
+       {id:'enable_cleanup',label:'Activer la purge automatique dans l\'outil de sauvegarde',type:'BONNE_PISTE',
+        consequence:'Purge automatique activée et lancée manuellement. 40% d\'espace libéré. Les sauvegardes peuvent reprendre.',
+        direct_resolve:true},
+       {id:'manual_cleanup',label:'Supprimer manuellement les sauvegardes de plus de 30 jours',type:'BONNE_PISTE',
+        consequence:'350 Go libérés manuellement. Les sauvegardes ce soir passeront.',
+        question_id:'backup_retention'},
+     ]},
+    {id:'add_disk',label:'Commander un disque supplémentaire pour le NAS',type:'MAUVAISE_PISTE',malus:true,
+     consequence:'Délai de 5 jours. Sauvegardes en échec d\'ici là. Ton chef : "T\'aurais pu libérer de l\'espace d\'abord."'},
+    {id:'compress',label:'Lancer une compression des données existantes',type:'NEUTRE',
+     consequence:'La compression est déjà activée. Les fichiers sont en format compressé. Pas de gain supplémentaire possible.'},
+  ],
+  resolution_ok:'Espace libéré. Sauvegardes reprennent. Ton chef : "Bien géré, maintenant c\'est automatique."',
+  resolution_fail:'Sauvegardes en échec 3 nuits supplémentaires. Audit de conformité compromis.',
+},
+
+// ======= 15. ExecutionPolicy PowerShell =======
+{
+  id:'ps_policy', title:'TICKET #8823', prio:'P2 — MOYEN',
+  situation:'Un développeur ne peut pas exécuter son script de déploiement mensuel. Erreur : "L\'exécution de scripts est désactivée sur ce système." Bloquer le déploiement = retard projet.',
+  actions:[
+    {id:'check_policy',label:'Vérifier l\'ExecutionPolicy actuelle (Get-ExecutionPolicy -List)',type:'BONNE_PISTE',
+     consequence:'"MachinePolicy: Restricted" — une GPO impose cette politique. Ce n\'est pas un simple réglage local, c\'est une politique d\'entreprise.',
+     follow_up:'GPO impose Restricted. Tu dois trouver un moyen d\'autoriser les scripts légitimes sans briser la politique.',
+     follow_up_actions:[
+       {id:'sign_script',label:'Proposer de signer le script numériquement (AllSigned)',type:'BONNE_PISTE',
+        consequence:'Solution sécurisée mais longue. Il faut un certificat de signature de code et former le développeur.',
+        question_id:'ps_remotesigned'},
+       {id:'gpo_exception',label:'Créer une exception GPO pour le groupe Développeurs',type:'BONNE_PISTE',
+        consequence:'Tu crées un filtre de sécurité sur la GPO pour exclure le groupe GRP-Devs. RemoteSigned s\'applique à leur place.',
+        question_id:'ps_execution_policy'},
+       {id:'bypass_local',label:'Changer localement avec Set-ExecutionPolicy Bypass',type:'MAUVAISE_PISTE',malus:true,
+        consequence:'La GPO écrase le réglage local au prochain rafraîchissement. Bypass contourne toutes les protections — déconseillé.'},
+     ]},
+    {id:'check_gpo_ps',label:'Vérifier si une GPO contrôle l\'ExecutionPolicy',type:'BONNE_PISTE',
+     consequence:'"gpresult /r" confirme qu\'une GPO "Hardening-Workstations" impose Restricted depuis la dernière mise à jour de sécurité.',
+     follow_up:'GPO Hardening trouvée. Tu dois décider comment gérer l\'exception.',
+     follow_up_actions:[
+       {id:'scope_gpo',label:'Restreindre la portée de la GPO (exclure les devs)',type:'BONNE_PISTE',
+        consequence:'La GPO n\'affecte plus les développeurs. Ils peuvent exécuter leurs scripts avec RemoteSigned.',
+        direct_resolve:true},
+       {id:'new_gpo',label:'Créer une GPO spécifique pour les développeurs',type:'BONNE_PISTE',
+        consequence:'Nouvelle GPO liée à OU=Développeurs avec RemoteSigned. Propre et documenté.',
+        question_id:'ps_execution_policy'},
+     ]},
+    {id:'run_admin',label:'Exécuter PowerShell en tant qu\'Administrateur',type:'NEUTRE',
+     consequence:'Même en admin, la MachinePolicy Restricted bloque les scripts. Les droits admin et l\'ExecutionPolicy sont distincts.'},
+    {id:'unrestricted',label:'Mettre l\'ExecutionPolicy à Unrestricted',type:'MAUVAISE_PISTE',malus:true,
+     consequence:'Unrestricted exécute tous les scripts sans vérification. Le RSSI reçoit une alerte de configuration non conforme.'},
+  ],
+  resolution_ok:'Exception créée. Scripts de déploiement fonctionnels. Ton chef : "Bonne approche, équilibre sécurité/usage."',
+  resolution_fail:'Déploiement bloqué. Applications non mises à jour. Retard projet signalé.',
+},
+
+]; // fin RPG_SCENARIOS_V2
+
+
+
 var RPG = {
-  CONF_GOOD_ACTION: 10,   // bonne piste choisie
-  CONF_GOOD_ANSWER: 5,    // bonne réponse (bonus "t'as bien compris")
-  CONF_BAD_ANSWER: -5,    // mauvaise réponse (faible — juste une vérif)
-  CONF_BAD_PISTE: -10,    // mauvaise piste
-
-  scenarios: [
-
-  // ======= 1. RSAT / WinRM =======
-  {
-    id:'winrm', title:'TICKET #4471', prio:'Niveau P2 — URGENT',
-    situation:'14h32 — Un collègue ne peut pas gérer SRV-PROD depuis RSAT. Erreur : "Acces refuse — WinRM ne repond pas". Ton chef attend une resolution avant 17h.',
-    actions:[
-      {id:'ping_srv', label:'Faire un ping de SRV-PROD depuis le poste client', type:'BONNE_PISTE',
-       consequence:'Le ping repond correctement. SRV-PROD est joignable sur le reseau. Le problème nest pas physique — cest une config WinRM ou pare-feu.',
-       follow_up:'Serveur en ligne. Maintenant tu dois comprendre pourquoi WinRM refuse la connexion malgré la connectivité réseau.',
-       follow_up_actions:[
-         {id:'check_winrm_svc', label:'Verifier le service WinRM sur SRV-PROD (Get-Service WinRM)', type:'BONNE_PISTE',
-          consequence:'Le service WinRM est démarré. En regardant les règles pare-feu, tu vois que la règle autorisant le port 5985 a été supprimée lors dun audit.',
-          question_id:'winrm_port'},
-         {id:'check_fw', label:'Vérifier les règles de pare-feu Windows sur SRV-PROD', type:'BONNE_PISTE',
-          consequence:'Les règles WinRM (port 5985/5986) sont désactivées. Elles ont été coupées lors dun durcissement sécurité la semaine dernière.',
-          question_id:'winrm_enable'},
-         {id:'check_listener', label:'Verifier les listeners avec winrm enumerate winrm/config/listener', type:'NEUTRE',
-          consequence:'Un listener actif sur * port 5985. Le service fonctionne. Le problème vient du pare-feu ou des TrustedHosts côté client.'},
-       ]},
-      {id:'check_trusted', label:'Vérifier les TrustedHosts sur le poste client', type:'BONNE_PISTE',
-       consequence:'En workgroup, le client doit déclarer SRV-PROD dans ses TrustedHosts. Tu ouvres PowerShell admin sur le poste du collègue.',
-       follow_up:'La liste TrustedHosts est vide. SRV-PROD ny est pas. Cest probablement la cause de lerreur Acces refuse.',
-       follow_up_actions:[
-         {id:'show_trusted', label:'Afficher les TrustedHosts actuels', type:'BONNE_PISTE',
-          consequence:'La commande retourne une valeur vide. SRV-PROD nest pas dans la liste de confiance du client WinRM.',
-          question_id:'winrm_trustedhosts'},
-         {id:'set_trusted', label:'Ajouter SRV-PROD avec Set-Item WSMan TrustedHosts', type:'BONNE_PISTE',
-          consequence:'Après avoir ajouté SRV-PROD aux TrustedHosts et ouvert une nouvelle session RSAT, la connexion fonctionne.',
-          direct_resolve:true},
-       ]},
-      {id:'restart_server', label:'Redémarrer SRV-PROD pour forcer la réinitialisation', type:'MAUVAISE_PISTE', malus:true,
-       consequence:'ERREUR CRITIQUE. SRV-PROD est en production. 15 utilisateurs perdent leur connexion. Ton chef reçoit une alerte et appelle immédiatement.'},
-      {id:'check_creds', label:'Vérifier les identifiants du collègue', type:'NEUTRE',
-       consequence:'Les identifiants sont corrects — compte admin local valide. Ce nest pas la cause du problème. Piste écartée.'},
-      {id:'enable_psremoting', label:'Lancer Enable-PSRemoting -Force directement sur SRV-PROD', type:'BONNE_PISTE',
-       consequence:'Tu accèdes à SRV-PROD en console locale et lances la commande. Elle reconfigure WinRM, recrée les listeners et les règles pare-feu en une seule opération.',
-       question_id:'winrm_enable'},
-    ],
-    resolution_ok:'WinRM opérationnel. Le collègue accède à RSAT. Ton chef : "Bien joué, réglé rapidement."',
-    resolution_fail:'Le problème WinRM dure 2h. Ton chef : "T as essayé nimporte quoi, le serveur a même redémarré..."',
-  },
-
-  // ======= 2. DNS ne resout plus =======
-  {
-    id:'dns', title:'TICKET #3892', prio:'Niveau P1 — CRITIQUE',
-    situation:'Alerte critique : depuis 20 minutes, aucun poste du site B ne peut accéder aux partages réseau ni à Internet. Les utilisateurs voient "Serveur DNS introuvable". Le DSI appelle directement.',
-    actions:[
-      {id:'flush_dns', label:'Vider le cache DNS sur les postes clients', type:'NEUTRE',
-       consequence:'Tu lances ipconfig /flushdns sur plusieurs postes. Le cache se vide mais le problème persiste — ce nest pas un problème de cache local.'},
-      {id:'check_service', label:'Vérifier si le service DNS est démarré sur le serveur', type:'BONNE_PISTE',
-       consequence:'Le service DNS est en état Stopped sur le serveur. Il sest arrêté suite à une mise à jour automatique cette nuit.',
-       follow_up:'Service DNS arrêté trouvé. Tu dois maintenant le redémarrer et vérifier pourquoi il sest arrêté.',
-       follow_up_actions:[
-         {id:'start_dns', label:'Démarrer le service DNS avec net start DNS', type:'BONNE_PISTE',
-          consequence:'Le service démarre. Tu ouvres les journaux devenements et trouves lerreur : une mise à jour Windows a modifié les dépendances du service.',
-          question_id:'dns_service_restart'},
-         {id:'check_eventlog', label:'Consulter les logs evenements du serveur DNS', type:'BONNE_PISTE',
-          consequence:'Event ID 4013 : le service DNS na pas pu charger les zones Active Directory. Les zones sont corrompues dans la base AD.',
-          question_id:'dns_soa'},
-         {id:'check_zone_files', label:'Vérifier lintégrité des fichiers de zone DNS', type:'BONNE_PISTE',
-          consequence:'La zone primaire existe mais lenregistrement SOA a un numéro de série invalide depuis une modification manuelle non validée.',
-          question_id:'dns_soa'},
-       ]},
-      {id:'check_hosts', label:'Regarder le fichier Hosts sur les postes', type:'NEUTRE',
-       consequence:'Les fichiers Hosts sont propres. Aucune entrée suspecte. Ce nest pas la cause.'},
-      {id:'change_dns', label:'Changer les DNS des postes vers 8.8.8.8 en urgence', type:'MAUVAISE_PISTE', malus:true,
-       consequence:'Internet revient partiellement mais les ressources internes (partages AD, GPO) restent inaccessibles. Le DSI demande pourquoi tu as modifié les DNS sans validation.'},
-      {id:'check_dc', label:'Vérifier si le contrôleur de domaine répond', type:'BONNE_PISTE',
-       consequence:'Le DC répond en ping mais les requêtes LDAP timeout. La panne DNS affecte aussi la résolution interne Active Directory.',
-       follow_up:'Le DC est joignable mais ses services DNS/AD sont dégradés. Le problème est bien au niveau du service DNS.',
-       follow_up_actions:[
-         {id:'restart_netlogon', label:'Redémarrer le service Netlogon sur le DC', type:'NEUTRE',
-          consequence:'Netlogon redémarre mais le problème DNS persiste — ce nest pas la cause racine.'},
-         {id:'check_dns_from_dc', label:'Tester la résolution DNS depuis le DC lui-même', type:'BONNE_PISTE',
-          consequence:'Même le DC ne peut plus résoudre ses propres zones. Le service DNS est bien la cause racine.',
-          question_id:'dns_service_restart'},
-       ]},
-    ],
-    resolution_ok:'Service DNS redémarré, zones intactes. Les partages remontent en 2 minutes. Le DSI : "Bien réagi, impact limité."',
-    resolution_fail:'30 minutes de coupure. Le DSI exige un rapport dincident. Ton chef note la modification des DNS sans validation.',
-  },
-
-  // ======= 3. VLAN ne communique plus =======
-  {
-    id:'vlan', title:'TICKET #5103', prio:'Niveau P2 — URGENT',
-    situation:'Le departement RH (VLAN 20) ne peut plus acceder au serveur de fichiers (VLAN 10). Les autres VLANs fonctionnent. Un responsable RH te relance toutes les 10 minutes.',
-    actions:[
-      {id:'check_routing', label:'Verifier si ip routing est active sur le switch L3', type:'BONNE_PISTE',
-       consequence:'Tu tapes "show run | include ip routing". Rien ne saffiche — la commande a ete retiree lors dune maintenance.',
-       question_id:'vlan_ip_routing'},
-      {id:'check_svi', label:'Verifier la SVI du VLAN 20 sur le switch L3', type:'BONNE_PISTE',
-       consequence:'Sur le switch L3, linterface Vlan20 est en "down/down". Elle a probablement ete desactivee manuellement.',
-       sub_actions:[
-         {id:'no_shutdown_svi', label:'Taper "no shutdown" sur linterface Vlan20', type:'BONNE_PISTE', question_id:'vlan_svi',
-          consequence:'Bonne idee. Tu entres dans la config de linterface Vlan20.'},
-         {id:'delete_svi', label:'Supprimer et reconfigurer la SVI depuis zero', type:'NEUTRE',
-          consequence:'Tu supprimes linterface Vlan20 et la recrees. Ca fonctionne mais cest plus long que necessaire.'},
-       ]},
-      {id:'check_trunk', label:'Verifier la configuration du port trunk', type:'BONNE_PISTE',
-       consequence:'Le port trunk entre laccess switch et le L3 nautorise plus le VLAN 20 — retire lors dune "simplification" recente.',
-       question_id:'vlan_trunk'},
-      {id:'restart_sw', label:'Redemarrer le switch du departement RH', type:'MAUVAISE_PISTE', malus:true,
-       consequence:'Tous les postes RH perdent leur connexion 3 minutes. Probleme non resolu. Le responsable RH appelle ton chef.'},
-      {id:'check_acl', label:'Verifier les ACL sur les interfaces du switch', type:'NEUTRE',
-       consequence:'Aucune ACL suspecte detectee sur les interfaces concernees. Piste ecartee.'},
-      {id:'ping_test', label:'Faire un ping du VLAN 20 vers le VLAN 10 depuis le switch', type:'BONNE_PISTE',
-       consequence:'Le ping echoue depuis le switch L3. Ca confirme que le probleme est bien au niveau du routage inter-VLAN.',
-       sub_actions:[
-         {id:'check_routes', label:'Verifier la table de routage avec "show ip route"', type:'BONNE_PISTE', question_id:'vlan_ip_routing',
-          consequence:'La table de routage ne montre aucune route connectee pour le VLAN 20 — "ip routing" est desactive.'},
-       ]},
-    ],
-    resolution_ok:'VLAN 20 accessible. Les RH reprennent le travail. Ton chef : "Bon diagnostic, tu as trouve la cause racine."',
-    resolution_fail:'VLAN 20 coupe 1h. Rapport dincident demande. Le service RH na pas pu travailler.',
-  },
-
-  // ======= 4. VM Hyper-V ne demarre pas =======
-  {
-    id:'hyperv', title:'TICKET #2267', prio:'Niveau P2 — URGENT',
-    situation:'Un dev signale que sa VM de test ne demarre plus. Erreur : "Impossible de demarrer la machine virtuelle — disque non trouve". Il a une demo dans 2h.',
-    actions:[
-      {id:'check_vhdx', label:'Verifier si le fichier VHDX est present sur le disque', type:'BONNE_PISTE',
-       consequence:'Le fichier .vhdx principal est la... mais un disque differentiel (.avhdx) dun snapshot pointe vers un chemin qui nexiste plus.',
-       question_id:'hyperv_snapshot'},
-      {id:'check_config', label:'Verifier la configuration de la VM dans Hyper-V', type:'BONNE_PISTE',
-       consequence:'Le chemin du disque dur a ete modifie apres une migration — il pointe vers D:\ alors que le VHDX est sur E:\.',
-       question_id:'hyperv_disk_path'},
-      {id:'check_switch_vm', label:'Verifier le commutateur reseau de la VM', type:'NEUTRE',
-       consequence:'Le commutateur virtuel est bien configure. Le probleme de demarrage nest pas lie au reseau.'},
-      {id:'recreate', label:'Recreer la VM depuis zero', type:'MAUVAISE_PISTE', malus:true,
-       consequence:'Le dev est horrifie — 3 mois de travail dans cette VM. Tu realises que tu aurais du diagnostiquer avant.'},
-      {id:'check_snapshots', label:'Verifier la chaine de snapshots dans le gestionnaire', type:'BONNE_PISTE',
-       consequence:'Tu vois une longue chaine de snapshots (.avhdx). Lun dentre eux reference un fichier supprime lors du dernier nettoyage.',
-       question_id:'hyperv_snapshot'},
-      {id:'check_logs', label:'Consulter les journaux devenements Hyper-V', type:'BONNE_PISTE',
-       consequence:'Le journal Hyper-V indique clairement : "Cannot find virtual hard disk file at D:\VMs\dev-vm.avhdx". Le chemin est incorrect.',
-       sub_actions:[
-         {id:'fix_path', label:'Corriger le chemin du disque dans les parametres VM', type:'BONNE_PISTE', question_id:'hyperv_disk_path',
-          consequence:'Tu sais ou est le probleme. Tu ouvres les parametres de la VM pour corriger le chemin.'},
-       ]},
-    ],
-    resolution_ok:'VM demarree en 15 min. Demo reussie. Ton chef : "Bonne reactivite, impact minimum."',
-    resolution_fail:'VM inaccessible. Demo annulee. Le dev porte plainte aupres du management.',
-  },
-
-  // ======= 5. Partage NTFS inaccessible =======
-  {
-    id:'ntfs', title:'TICKET #6814', prio:'Niveau P1 — CRITIQUE',
-    situation:'URGENCE : la responsable RH ne peut plus acceder au dossier \\SRV-FILE\Confidentiel-RH. Elle voit "Acces refuse". Les autres membres RH y accedent normalement.',
-    actions:[
-      {id:'check_ntfs', label:'Verifier les permissions NTFS du dossier', type:'BONNE_PISTE',
-       consequence:'Sur SRV-FILE, tu ouvres les proprietes du dossier. La responsable RH a un Deny explicite sur sa fiche, ajoute hier par erreur.',
-       question_id:'ntfs_deny'},
-      {id:'check_groups', label:'Verifier ses appartenances aux groupes AD', type:'BONNE_PISTE',
-       consequence:'Elle est dans GRP-RH, mais aussi dans GRP-STAGIAIRES par erreur lors dune reorganisation. Ce groupe a un Deny sur le dossier.',
-       question_id:'ntfs_group_deny'},
-      {id:'check_share', label:'Verifier les permissions de partage SMB', type:'NEUTRE',
-       consequence:'Les permissions SMB accordent un acces Everyone en lecture/ecriture. Ce nest pas la cause — les NTFS priment.'},
-      {id:'check_inheritance', label:'Verifier lheritage des permissions', type:'BONNE_PISTE',
-       consequence:'Lheritage est coupe sur ce dossier et les ACL ont ete reconstruites manuellement. Une entree Deny a ete ajoutee.',
-       sub_actions:[
-         {id:'who_added', label:'Verifier qui a modifie les ACL et quand', type:'BONNE_PISTE',
-          consequence:'Les journaux de securite montrent que les ACL ont ete modifiees hier a 17h42 par ladmin en realisant une reorganisation de droits.',
-          direct_resolve:true},
-         {id:'restore_acl', label:'Supprimer le Deny et restaurer les droits corrects', type:'BONNE_PISTE', question_id:'ntfs_deny',
-          consequence:'Tu sais quoi faire. Tu ouvres les proprietes avancees de securite du dossier.'},
-       ]},
-      {id:'reset_password', label:'Reinitialiser son mot de passe', type:'MAUVAISE_PISTE', malus:true,
-       consequence:'Son mot de passe fonctionne — elle accede a dautres ressources. La reinitialisation ne change rien et elle doit reconfigurer ses applis.'},
-    ],
-    resolution_ok:'Acces retabli en 10 min. La responsable travaille. Ton chef : "Bien gere, cause subtile trouvee."',
-    resolution_fail:'La responsable sans acces toute la journee. Le DRH est contacte. Mail desagreable pour ton chef.',
-  },
-
-  // ======= 6. Boucle reseau STP =======
-  {
-    id:'stp', title:'TICKET #1190', prio:'Niveau P3 — CRITIQUE',
-    situation:'ALERTE CRITIQUE : tempete de broadcast dans le batiment B. Switches saturent, tout le monde est coupe. Indicateurs de trafic a 100%. Le DSI est sur place.',
-    actions:[
-      {id:'show_stp', label:'Analyser show spanning-tree sur le switch core', type:'BONNE_PISTE',
-       consequence:'Un port est en Forwarding alors quil devrait etre Blocking. Un switch non autorise a ete branche avec 2 cables.',
-       sub_actions:[
-         {id:'shutdown_loop', label:'Couper le port incrimine immediatement', type:'BONNE_PISTE', question_id:'stp_bpduguard',
-          consequence:'La tempete sarrete en quelques secondes apres la coupure du port.'},
-         {id:'identify_sw', label:'Identifier physiquement le switch non autorise', type:'BONNE_PISTE',
-          consequence:'Tu trouves un switch consumer branche par quelquun qui voulait avoir plus de ports. 2 cables crees une boucle.',
-          direct_resolve:true},
-       ]},
-      {id:'shutdown_port', label:'Couper physiquement le port suspect', type:'BONNE_PISTE',
-       consequence:'En coupant le port, la tempete de broadcast sarrete immediatement. Le reseau se stabilise.',
-       question_id:'stp_bpduguard'},
-      {id:'restart_all', label:'Redemarrer tous les switches du batiment', type:'MAUVAISE_PISTE', malus:true,
-       consequence:'5 min de coupure totale. La boucle revient au redemarrage car la cause nest pas traitee.'},
-      {id:'check_root', label:'Verifier quel switch est le Root Bridge', type:'NEUTRE',
-       consequence:'Le Root Bridge est le switch core. Pas anormal. Mais tu notes que le switch non autorise a une priorite plus basse.'},
-      {id:'check_stp_mode', label:'Verifier si RSTP ou STP classique est utilise', type:'NEUTRE',
-       consequence:'Le reseau utilise RSTP (Rapid STP). Cest bien — convergence rapide. Mais ca nempêche pas les boucles physiques.'},
-      {id:'capture_traffic', label:'Lancer une capture Wireshark', type:'NEUTRE',
-       consequence:'Tu vois des milliers de paquets ARP identiques par seconde — signature classique dune tempete de broadcast due a une boucle.'},
-    ],
-    resolution_ok:'Boucle stoppee en 3 min. Reseau stable. DSI : "Bonne gestion de crise, impact limite."',
-    resolution_fail:'Boucle pendant 15 min. Impact total batiment B. DSI demande post-mortem.',
-  },
-
-  // ======= 7. DHCP epuise =======
-  {
-    id:'dhcp', title:'TICKET #7723', prio:'Niveau P2 — URGENT',
-    situation:'Lundi matin : 12 postes en 169.254.x.x, impossible dacceder au reseau. Plusieurs nouveaux stagiaires ont demarre aujourd hui. Le service compta bloque.',
-    actions:[
-      {id:'check_scope', label:'Verifier letat du scope DHCP sur le serveur', type:'BONNE_PISTE',
-       consequence:'Le pool 192.168.1.100-200 est a 100% — 100 baux pour 100 adresses. Scope epuise.',
-       sub_actions:[
-         {id:'extend_scope', label:'Etendre la plage DHCP immediatement', type:'BONNE_PISTE', question_id:'dhcp_scope',
-          consequence:'Tu peux etendre de -200 a -250 par exemple pour donner 50 adresses supplementaires.'},
-         {id:'clean_stale', label:'Rechercher et supprimer les baux obsoletes', type:'BONNE_PISTE', question_id:'dhcp_lease',
-          consequence:'Tu filtres les baux actifs et tu vois 23 baux avec des MACs de postes non decommissionnes.'},
-       ]},
-      {id:'check_stale', label:'Rechercher des baux obsoletes dans le scope', type:'BONNE_PISTE',
-       consequence:'23 baux actifs avec des MACs danciens postes non decommissionnes dans le DHCP.',
-       question_id:'dhcp_lease'},
-      {id:'check_service_dhcp', label:'Verifier si le service DHCP est demarre', type:'NEUTRE',
-       consequence:'Le service DHCP Server est bien demarre. Le probleme vient dailleurs.'},
-      {id:'restart_dhcp', label:'Redemarrer le service DHCP', type:'MAUVAISE_PISTE', malus:true,
-       consequence:'Le redemarrage ne libere aucun bail — ils sont persistants. Les 12 postes restent sans adresse.'},
-      {id:'ipconfig_renew', label:'Faire ipconfig /renew sur les postes en 169.254', type:'NEUTRE',
-       consequence:'Les postes tentent de renouveler mais le pool est toujours epuise. La cause racine nest pas traitee.'},
-      {id:'check_rogue', label:'Verifier quil ny a pas un DHCP pirate sur le reseau', type:'NEUTRE',
-       consequence:'Apres analyse, pas de serveur DHCP non autorise detecte. Le probleme est bien un scope epuise sur le serveur legitime.'},
-    ],
-    resolution_ok:'Pool etendu, baux obsoletes supprimes. 12 postes obtiennent une adresse. Ton chef : "Bien diagnostique, tu as vu les baux fantomes."',
-    resolution_fail:'Postes en 169.254.x.x jusqua 14h. Le service compta ne travaille pas le matin.',
-  },
-
-  // ======= 8. SSH Cisco impossible =======
-  {
-    id:'cisco_ssh', title:'TICKET #9001', prio:'Niveau P2 — URGENT',
-    situation:'Un admin reseau ne peut plus se connecter en SSH au routeur R-CORE. La connexion Telnet fonctionne encore. Ton chef veut Telnet desactive. Erreur : "SSH connection refused".',
-    actions:[
-      {id:'check_rsa', label:'Verifier si les cles RSA sont generees', type:'BONNE_PISTE',
-       consequence:'"show crypto key mypubkey rsa" — aucune cle affichee. Elles ont ete supprimees lors dune remise a zero partielle.',
-       sub_actions:[
-         {id:'check_domain', label:'Verifier si ip domain-name est configure', type:'BONNE_PISTE', question_id:'cisco_ssh_domain',
-          consequence:'Sans ip domain-name, impossible de generer des cles RSA. Tu verifies la config.'},
-         {id:'gen_rsa', label:'Generer directement les cles RSA', type:'BONNE_PISTE', question_id:'cisco_ssh_rsa',
-          consequence:'Tu essaies de generer les cles RSA — mais il faut dabord verifier les prerequis.'},
-       ]},
-      {id:'check_vty', label:'Verifier la configuration des lignes VTY', type:'BONNE_PISTE',
-       consequence:'Les VTY acceptent SSH et Telnet, mais un "transport input telnet" a ete ajoute apres le "transport input ssh" — ecrasant le premier.',
-       question_id:'cisco_ssh_vty'},
-      {id:'check_acl_ssh', label:'Verifier si une ACL bloque le port 22', type:'BONNE_PISTE',
-       consequence:'Une ACL sur linterface de management bloque le port 22 entrant. Elle a ete creee trop restrictive lors dun audit securite.',
-       question_id:'cisco_acl'},
-      {id:'check_ssh_version', label:'Verifier la version SSH configuree', type:'BONNE_PISTE',
-       consequence:'"show ip ssh" — SSH version 1. SSHv1 est vulnerable et souvent bloque par les clients modernes. Il faut forcer SSHv2.',
-       direct_resolve:true},
-      {id:'reinstall_ios', label:'Reinstaller lIOS du routeur', type:'MAUVAISE_PISTE', malus:true,
-       consequence:'Procedure lourde necessitant une fenetre de maintenance. Ton chef est furieux.'},
-      {id:'check_hostname', label:'Verifier si un hostname est configure', type:'NEUTRE',
-       consequence:'Le hostname est "R-CORE". Prerequis valide. Le probleme est ailleurs.'},
-    ],
-    resolution_ok:'SSH operationnel sur R-CORE, Telnet desactive. Ton chef : "Bon travail, securite en ordre."',
-    resolution_fail:'SSH toujours KO apres 1h. Admin force de continuer en Telnet non chiffre. Audit compromis.',
-  },
-
-  ], // fin scenarios
-}; // fin RPG
+  CONF_GOOD_ACTION: 10,
+  CONF_GOOD_ANSWER: 5,
+  CONF_BAD_ANSWER: -5,
+  CONF_BAD_PISTE: -10,
+  scenarios: RPG_SCENARIOS_V2,
+};
 
 // Questions liees
 var RPG_QUESTIONS = {
@@ -5782,7 +6347,7 @@ function startRPGNarrative(){
   // Init état
   rpgN.confidence=50;rpgN.ticketIdx=0;rpgN.stats={ok:0,fail:0};
   rpgN.triedActions={};rpgN.actOrder={};rpgN.questionAnswered=false;rpgN.currentTicket=null;
-  rpgN.jokers=1;
+  rpgN.jokers=1;rpgN.questionAnswered=false;
   // Sélectionner les tickets aléatoirement
   var arr=RPG.scenarios.map(function(_,i){return i;});
   rpgN.ticketOrder=shuffle(arr).slice(0,rpgN.ticketsPerSession||5);
@@ -5864,13 +6429,14 @@ function rpgRenderActions(sc){
     btn.disabled=isTried;
     btn.innerHTML='<span class="rpg-action-key">'+keys[ki]+'</span><span>'+action.label+'</span>';
     if(!isTried){
-      (function(a){btn.onclick=function(){rpgPickAction(a);};})(action);
+      (function(a){btn.onclick=function(){playClickSoft();rpgPickAction(a);};})(action);
     }
     grid.appendChild(btn);
   });
 }
 
 function rpgPickAction(action, isFollowUp){
+  playClick();
   var sc=rpgN.currentTicket;
   if(!isFollowUp){
     if(!rpgN.triedActions[sc.id]) rpgN.triedActions[sc.id]=[];
@@ -5923,7 +6489,7 @@ function rpgPickAction(action, isFollowUp){
       if(narEl&&action.follow_up){narEl.textContent=action.follow_up;narEl.style.color='#4a6030';}
       // Afficher les sous-actions
       if(nextBtn){
-        nextBtn.textContent='APPROFONDIR L INVESTIGATION →';
+        nextBtn.textContent='APPROFONDIR →';
         nextBtn.className='rpg-next-btn show';
         nextBtn.style.background='#3a3010';
         nextBtn.style.borderColor='#a07820';
@@ -6098,6 +6664,22 @@ function rpgShowInlineQuestion(qid,inlineQ,resolution,nextBtn,sc){
   var lbl=document.getElementById('rpg-inline-q-label');
   if(lbl) lbl.textContent='🎓 AS-TU BIEN COMPRIS ? (bonus confiance si correct)';
   document.getElementById('rpg-inline-q-text').textContent=qdata.q;
+  // Bouton PASSER (skip la question)
+  // Vider le skip btn précédent si présent
+  var qbox=document.getElementById('rpg-inline-q');
+  if(qbox){
+    var oldSkip=qbox.querySelector('.rpg-skip-btn');
+    if(oldSkip) oldSkip.remove();
+    var skipBtn=document.createElement('button');
+    skipBtn.className='rpg-skip-btn';
+    skipBtn.textContent='PASSER →';
+    skipBtn.style.cssText='float:right;background:none;border:1px dashed #8a7a5a;color:#8a7a5a;font-family:Courier New,monospace;font-size:9px;padding:3px 8px;cursor:pointer;margin-bottom:8px;';
+    skipBtn.onclick=function(){
+      if(inlineQ) inlineQ.style.display='none';
+      rpgShowNextTicketBtn(nextBtn);
+    };
+    qbox.insertBefore(skipBtn,qbox.firstChild);
+  }
   var expl=document.getElementById('rpg-inline-expl');
   if(expl){expl.textContent=qdata.x;expl.className='rpg-inline-expl';}
   var optsEl=document.getElementById('rpg-inline-opts');
@@ -6119,10 +6701,19 @@ function rpgShowInlineQuestion(qid,inlineQ,resolution,nextBtn,sc){
         });
         btn.classList.add(correct?'ok':'err');
         if(expl) expl.className='rpg-inline-expl show';
-        // Question bonus : petit bonus/malus
-        if(correct){rpgChangeConf(RPG.CONF_GOOD_ANSWER);}
-        else{rpgChangeConf(RPG.CONF_BAD_ANSWER);}
-        // Toujours afficher le bouton ticket suivant (la résolution est déjà affichée)
+        // Question bonus : pas d'impact sur la barre
+        // Si correct → +1 joker
+        if(correct){
+          rpgN.jokers=(rpgN.jokers||0)+1;
+          rpgUpdateJokerDisplay();
+          // Toast joker
+          var jt=document.createElement('div');
+          jt.style.cssText='position:fixed;top:60px;left:50%;transform:translateX(-50%);background:#4a7a20;color:#fef3c7;font-family:Courier New,monospace;font-size:11px;padding:8px 16px;border:2px solid #2a5a10;z-index:990;box-shadow:3px 3px 0 #1a4008;letter-spacing:1px;';
+          jt.textContent='🃏 +1 JOKER GAGNÉ !';
+          document.body.appendChild(jt);
+          setTimeout(function(){if(jt.parentNode)jt.remove();},2000);
+        }
+        // Toujours afficher le bouton ticket suivant
         rpgShowNextTicketBtn(nextBtn);
       };
     })(b,isOk);
@@ -6190,6 +6781,7 @@ function rpgShowView(which){
 
 function rpgChangeConf(delta){
   rpgN.confidence=Math.max(0,Math.min(100,rpgN.confidence+delta));
+  if(delta>0)playConfUp();else if(delta<0)playConfDown();
   rpgUpdateBar(delta);
 }
 
@@ -6208,7 +6800,7 @@ function rpgUpdateBar(delta){
         ind.className='';
         void ind.offsetWidth;
         ind.className='rpg-conf-delta '+(delta>0?'show-up':'show-down');
-        if(soundOn){try{if(delta>0)playOk();else playErr();}catch(e){}}
+        // sons gérés dans rpgChangeConf
         setTimeout(function(){var i2=document.getElementById('rpg-conf-delta');if(i2)i2.className='rpg-conf-delta';},1800);
       }
     }
@@ -6234,23 +6826,28 @@ function rpgUpdateBadge(){
 function rpgEndSession(fired,promoted){
   document.body.classList.remove('rpg-mode');
   currentUI=lsGet('tssr5_ui','ui-arcade');
-  applyUI();
-  showScreen('rpg-end');
-  var icon=promoted?'🏆':fired?'📦':rpgN.stats.ok>=rpgN.stats.fail?'✅':'😓';
-  var title=promoted?'PROMOTION !':fired?'LICENCIÉ...':rpgN.stats.ok>=rpgN.stats.fail?'MISSION ACCOMPLIE':'SESSION DIFFICILE';
-  var col=promoted?'#fbbf24':fired?'#dc2626':rpgN.stats.ok>=rpgN.stats.fail?'#00a85a':'#ff9800';
-  var sub=promoted?'Confiance maximale atteinte. Ton chef te propose un poste de chef de projet.':fired?'Trop derreurs. On te demande de rendre ton badge.':rpgN.confidence>=60?'Bon travail. Quelques points a ameliorer.':'Session difficile. Revise les points techniques rates.';
-  var t=document.getElementById('rpg-end-title');if(t){t.textContent=title;t.style.color=col;}
-  var s=document.getElementById('rpg-end-sub');if(s) s.textContent=sub;
-  var c=document.getElementById('rpg-end-conf');if(c){c.textContent=rpgN.confidence+'%';c.style.color=col;}
-  var ok=document.getElementById('rpg-end-ok');if(ok) ok.textContent=rpgN.stats.ok;
-  var fa=document.getElementById('rpg-end-fail');if(fa) fa.textContent=rpgN.stats.fail;
-}
+  // Afficher l'écran de fin avec fond paper forcé via CSS inline
+  document.querySelectorAll('.screen').forEach(function(s){s.style.display='none';s.classList.remove('active');});
+  var endScreen=document.getElementById('screen-rpg-end');
+  if(endScreen){endScreen.style.display='flex';endScreen.classList.add('active');}
 
-function quickFlash(){
-  selMode='flash';
-  selCat='mix';
-  startGame();
+  var title=promoted?'PROMOTION !':fired?'LICENCIÉ...':rpgN.stats.ok>=rpgN.stats.fail?'MISSION ACCOMPLIE':'SESSION DIFFICILE';
+  var col=promoted?'#8b1a1a':fired?'#8b1a1a':rpgN.stats.ok>=rpgN.stats.fail?'#2a5a10':'#6a1a08';
+  var sub=promoted?'Confiance maximale. Ton chef te propose une promotion au poste de chef de projet.':
+    fired?'Trop derreurs. Rends ton badge.':
+    rpgN.confidence>=60?'Bon travail. Quelques points a ameliorer.':
+    'Session difficile. Revois les points rates.';
+
+  var t=document.getElementById('rpg-end-title'); if(t){t.textContent=title;t.style.color=col;}
+  var s=document.getElementById('rpg-end-sub'); if(s) s.textContent=sub;
+  var c=document.getElementById('rpg-end-conf'); if(c){c.textContent=rpgN.confidence+'%';c.style.color=col;}
+  var ok=document.getElementById('rpg-end-ok'); if(ok) ok.textContent=rpgN.stats.ok;
+  var fa=document.getElementById('rpg-end-fail'); if(fa) fa.textContent=rpgN.stats.fail;
+
+  // Cacher les éléments RPG
+  var bslot=document.getElementById('rpg-bonus-slot');if(bslot)bslot.className='rpg-bonus-slot';
+  var bm=document.getElementById('rpg-bonus-menu');if(bm)bm.className='rpg-bonus-menu';
+  var tb=document.getElementById('rpg-trust-bar');if(tb)tb.style.display='none';
 }
 
 function rpgQuit(){
@@ -6665,6 +7262,7 @@ function rpgShowLexique(sc){
 var rpgIntroTickets = 5;
 
 function launchRPGDirect(){
+  playModeStart();
   // Thème Paper pour RPG — appliquer sur le body directement sans passer par applyUI complet
   document.body.classList.remove('ui-arcade','ui-terminal','ui-minimal');
   document.body.classList.add('ui-paper','rpg-mode');
@@ -6813,15 +7411,13 @@ function rpgRenderBonusMenu(){
 
 // Effets des bonus
 function rpgBonusHalfElim(){
-  // Éliminer la moitié des mauvaises réponses de la question en cours
-  var opts=document.querySelectorAll('.rpg-inline-opt:not(:disabled)');
-  if(!opts.length) return;
-  // Trouver les mauvaises réponses
-  var wrong=[]; var correct=[];
-  opts.forEach(function(o){wrong.push(o);});
-  // On ne sait pas laquelle est correcte sans recalculer, on en grise simplement 2
-  var toElim=shuffle(Array.from(opts)).slice(0,Math.floor(opts.length/2));
-  toElim.forEach(function(o){o.style.opacity='.25';o.style.pointerEvents='none';});
+  var opts=Array.from(document.querySelectorAll('.rpg-inline-opt:not(:disabled)'));
+  if(opts.length<2) return;
+  // Griser la moitié des options (aléatoirement, sauf la bonne)
+  var correct=opts.filter(function(o){return o.classList.contains('ok');});
+  var others=opts.filter(function(o){return !o.classList.contains('ok');});
+  var toElim=shuffle(others).slice(0,Math.floor(others.length/2));
+  toElim.forEach(function(o){o.style.opacity='.2';o.style.pointerEvents='none';o.disabled=true;});
 }
 
 function rpgBonusLexique(){
@@ -6948,19 +7544,129 @@ function rpgRenderLexiqueFull(scId){
 }
 
 function rpgBonusDoc(){
-  // Mettre en surbrillance la bonne réponse
-  var opts=document.querySelectorAll('.rpg-inline-opt:not(:disabled)');
-  opts.forEach(function(o){
-    if(o.classList.contains('ok')){
-      o.style.border='2px solid #d97706';
-      o.style.background='rgba(217,119,6,.15)';
-    }
-  });
+  // Ajouter un indice discret sur la bonne réponse (fond légèrement différent)
+  // On ne peut pas savoir laquelle est correcte sans le qid — on ajoute juste un toast
+  var narEl=document.getElementById('rpg-narrative-text');
+  if(narEl){
+    narEl.textContent='📋 Documentation consultée. Cherche la réponse la plus précise et complète.';
+    narEl.style.color='#d97706';
+    setTimeout(function(){if(narEl){narEl.style.color='';narEl.textContent='Indice : lis bien chaque option avant de répondre.';}},4000);
+  }
+}
+
+// =====================================================
+// SONS UI (Web Audio — petits bruitages)
+// =====================================================
+var _uiAC = null;
+function getUiAC(){
+  if(!_uiAC) _uiAC=new(window.AudioContext||window.webkitAudioContext)();
+  return _uiAC;
+}
+
+function playClick(){
+  if(!soundOn) return;
+  try{
+    var ac=getUiAC();
+    var o=ac.createOscillator();
+    var g=ac.createGain();
+    o.connect(g);g.connect(ac.destination);
+    o.type='square';
+    o.frequency.setValueAtTime(800,ac.currentTime);
+    o.frequency.exponentialRampToValueAtTime(400,ac.currentTime+0.04);
+    g.gain.setValueAtTime(0.08,ac.currentTime);
+    g.gain.exponentialRampToValueAtTime(0.001,ac.currentTime+0.06);
+    o.start();o.stop(ac.currentTime+0.07);
+  }catch(e){}
+}
+
+function playClickSoft(){
+  if(!soundOn) return;
+  try{
+    var ac=getUiAC();
+    var o=ac.createOscillator();
+    var g=ac.createGain();
+    o.connect(g);g.connect(ac.destination);
+    o.type='sine';
+    o.frequency.setValueAtTime(600,ac.currentTime);
+    g.gain.setValueAtTime(0.05,ac.currentTime);
+    g.gain.exponentialRampToValueAtTime(0.001,ac.currentTime+0.08);
+    o.start();o.stop(ac.currentTime+0.09);
+  }catch(e){}
+}
+
+function playThemeChange(){
+  if(!soundOn) return;
+  try{
+    var ac=getUiAC();
+    var freqs=[440,550,660];
+    freqs.forEach(function(f,i){
+      var o=ac.createOscillator();
+      var g=ac.createGain();
+      o.connect(g);g.connect(ac.destination);
+      o.type='sine';
+      o.frequency.value=f;
+      g.gain.setValueAtTime(0,ac.currentTime+i*0.08);
+      g.gain.linearRampToValueAtTime(0.07,ac.currentTime+i*0.08+0.04);
+      g.gain.exponentialRampToValueAtTime(0.001,ac.currentTime+i*0.08+0.15);
+      o.start(ac.currentTime+i*0.08);
+      o.stop(ac.currentTime+i*0.08+0.16);
+    });
+  }catch(e){}
+}
+
+function playModeStart(){
+  if(!soundOn) return;
+  try{
+    var ac=getUiAC();
+    [[330,0],[440,0.1],[550,0.2],[660,0.3]].forEach(function(pair){
+      var o=ac.createOscillator();
+      var g=ac.createGain();
+      o.connect(g);g.connect(ac.destination);
+      o.type='triangle';
+      o.frequency.value=pair[0];
+      g.gain.setValueAtTime(0,ac.currentTime+pair[1]);
+      g.gain.linearRampToValueAtTime(0.08,ac.currentTime+pair[1]+0.05);
+      g.gain.exponentialRampToValueAtTime(0.001,ac.currentTime+pair[1]+0.2);
+      o.start(ac.currentTime+pair[1]);
+      o.stop(ac.currentTime+pair[1]+0.21);
+    });
+  }catch(e){}
+}
+
+function playConfUp(){
+  if(!soundOn) return;
+  try{
+    var ac=getUiAC();
+    var o=ac.createOscillator();var g=ac.createGain();
+    o.connect(g);g.connect(ac.destination);
+    o.type='sine';
+    o.frequency.setValueAtTime(440,ac.currentTime);
+    o.frequency.linearRampToValueAtTime(660,ac.currentTime+0.15);
+    g.gain.setValueAtTime(0.1,ac.currentTime);
+    g.gain.exponentialRampToValueAtTime(0.001,ac.currentTime+0.2);
+    o.start();o.stop(ac.currentTime+0.21);
+  }catch(e){}
+}
+
+function playConfDown(){
+  if(!soundOn) return;
+  try{
+    var ac=getUiAC();
+    var o=ac.createOscillator();var g=ac.createGain();
+    o.connect(g);g.connect(ac.destination);
+    o.type='sawtooth';
+    o.frequency.setValueAtTime(300,ac.currentTime);
+    o.frequency.linearRampToValueAtTime(150,ac.currentTime+0.2);
+    g.gain.setValueAtTime(0.08,ac.currentTime);
+    g.gain.exponentialRampToValueAtTime(0.001,ac.currentTime+0.25);
+    o.start();o.stop(ac.currentTime+0.26);
+  }catch(e){}
 }
 
 // SIDE MENU
 // =====================================================
 function pickVTMenu(e){
+  playThemeChange();
   document.querySelectorAll('.vtbtn').forEach(function(b){b.classList.remove('sel');});
   e.classList.add('sel');
   vTheme=e.getAttribute('data-vt');
@@ -7013,6 +7719,8 @@ function startDuel(){
 // KEYBOARD
 document.addEventListener('keydown',function(e){
   if(paused) return;
+  // Ne pas intercepter si l'input type est actif
+  if(document.activeElement&&document.activeElement.id==='type-input') return;
   var q=session[idx];if(!q) return;
   if(q.t==='qcm'||q.t==='debug'){
     var map={A:0,B:1,C:2,D:3};var k=e.key.toUpperCase();
